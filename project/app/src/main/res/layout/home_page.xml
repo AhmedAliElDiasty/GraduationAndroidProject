@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/firstlogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/compbnr_01"
+        app:civ_border_color="#FFFFFF"
+
+        />
+
+    <Button
+        android:id="@+id/btn_prof"
+        android:layout_width="600px"
+        android:layout_height="120px"
+        android:layout_below="@+id/firstlogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="65dp"
+        android:text="@string/logprof"
+        android:background="#FFFFFF"
+        android:textColor="#00ABFA"
+        android:drawableLeft="@drawable/logprof"
+        android:paddingLeft="20dp"
+        android:textSize="32px"
+        android:onClick="next"
+
+        />
+
+    <Button
+        android:id="@+id/btn_student"
+        android:layout_width="600px"
+        android:layout_height="120px"
+        android:layout_alignEnd="@+id/btn_prof"
+        android:layout_alignRight="@+id/btn_prof"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn_prof"
+        android:layout_marginTop="32dp"
+        android:text="@string/logstudent"
+        android:background="#FFFFFF"
+        android:textColor="#00ABFA"
+        android:drawableLeft="@drawable/small_student"
+        android:drawablePadding="-20dp"
+        android:paddingLeft="20dp"
+        android:textSize="32px"
+        android:onClick="next"
+        />
+
+    <Button
+        android:id="@+id/btn_createAcc"
+        android:layout_width="600px"
+        android:layout_height="120px"
+        android:layout_below="@+id/btn_student"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="@string/createAccount"
+        android:background="@drawable/rounded_button"
+        android:textColor="#FFFFFF"
+        android:drawableRight="@drawable/small_add"
+        android:drawablePadding="-40dp"
+        android:paddingRight="43dp"
+        android:textSize="32px"
+        />
+
+</RelativeLayout>
