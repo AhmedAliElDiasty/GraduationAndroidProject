@@ -58,16 +58,16 @@
         android:id="@+id/btn_createAcc"
         android:layout_width="600px"
         android:layout_height="120px"
+        android:layout_alignStart="@+id/btn_student"
         android:layout_below="@+id/btn_student"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:text="@string/createAccount"
+        android:layout_marginTop="14dp"
         android:background="@drawable/rounded_button"
-        android:textColor="#FFFFFF"
-        android:drawableRight="@drawable/small_add"
         android:drawablePadding="-40dp"
+        android:drawableRight="@drawable/small_add"
+        android:onClick="instructor"
         android:paddingRight="43dp"
-        android:textSize="32px"
-        />
+        android:text="@string/createAccount"
+        android:textColor="#FFFFFF"
+        android:textSize="32px" />
 
 </RelativeLayout>

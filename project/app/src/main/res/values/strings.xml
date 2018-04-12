@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">MAS</string>
+    <string name="app_name" translatable="false">AMS</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
@@ -22,4 +22,10 @@
     <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="endingMessage">Thank you for ending these questions</string>
+    <string name="home">Home</string>
+    <string name="notification">Notification</string>
+    <string name="schedule">Schedule</string>
+    <string name="aboutUs">About Us</string>
+    <string name="logout">Logout</string>
+    <string name="weekDays">weekDay</string>
 </resources>

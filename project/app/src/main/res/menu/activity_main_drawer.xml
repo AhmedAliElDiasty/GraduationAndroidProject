@@ -5,22 +5,22 @@
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/home"
-            android:title="Home"
+            android:title="@string/home"
             android:icon="@drawable/home"
             />
         <item android:id="@+id/notification"
-            android:title="Notification"
+            android:title="@string/notification"
             android:icon="@drawable/notification"
             />
         <item android:id="@+id/schedule"
-            android:title="Schedule"
+            android:title="@string/schedule"
             android:icon="@drawable/schedule"
             />
         <item android:id="@+id/aboutus"
-            android:title="About Us" android:icon="@drawable/aboutus"
+            android:title="@string/aboutUs" android:icon="@drawable/aboutus"
             />
         <item android:id="@+id/logout"
-            android:title="Logout" android:icon="@drawable/logout"
+            android:title="@string/logout" android:icon="@drawable/logout"
             />
 
     </group>

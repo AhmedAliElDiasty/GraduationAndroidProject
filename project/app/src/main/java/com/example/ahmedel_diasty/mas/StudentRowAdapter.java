@@ -143,61 +143,6 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
             resume = (Button)itemView.findViewById(R.id.resume);
             timer = (TextView)itemView.findViewById(R.id.time);
 
-
-
-//            aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                    if (isChecked){
-//                        status.setTextColor(Color.rgb(0,171,250));
-//                        status.setText("Active");
-//                    }
-//                    else{
-//                        status.setTextColor(Color.rgb(12,82,114));
-//                        status.setText("Active");
-//                    }
-//                }
-//            });
-//
-//            pause.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    timeCount.setVisibility(View.VISIBLE);
-//                    mainRow.setVisibility(View.GONE);
-//                    final int myTime = 5*60*1000;
-//                    countDownTimer = new CountDownTimer(myTime,1000) {
-//                        int tempSecond;
-//                        int second;
-//                        int minute;
-//                        @Override
-//                        public void onTick(long millisUntilFinished) {
-//                            tempSecond = (int) (millisUntilFinished/1000);
-//                            minute = tempSecond/60;
-//                            second= tempSecond%60;
-//                            timer.setText(minute+":"+second);
-//                            if (second == -1){
-//                                minute--;
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFinish() {
-//                            aSwitch.setChecked(false);
-//                            status.setTextColor(Color.rgb(12,82,114));
-//                            timeCount.setVisibility(View.GONE);
-//                            mainRow.setVisibility(View.VISIBLE);
-//                        }
-//                    }.start();
-//                }
-//            });
-//            resume.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    countDownTimer.cancel();
-//                    timeCount.setVisibility(View.GONE);
-//                    mainRow.setVisibility(View.VISIBLE);
-//                }
-//            });
         }
 
 

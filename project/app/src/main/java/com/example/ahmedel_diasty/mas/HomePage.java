@@ -16,4 +16,8 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(this,LoginForm.class);
         startActivity(intent);
     }
+    public void instructor(View view){
+        Intent intent = new Intent(this,Lectures.class);
+        startActivity(intent);
+    }
 }
