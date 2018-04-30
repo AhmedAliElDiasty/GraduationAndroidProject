@@ -23,8 +23,8 @@ public class LoginForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_form);
-        APPusername = (EditText)findViewById(R.id.username);
-        APPpassword = (EditText)findViewById(R.id.password);
+        APPusername = findViewById(R.id.username);
+        APPpassword = findViewById(R.id.password);
 
     }
     public void test(View view){
@@ -33,24 +33,45 @@ public class LoginForm extends AppCompatActivity {
         model = new Model();
         if(ValidateLogin(username,password)){
             apiInterface = ApiClient.getClient().create(ApiInterface.class);
-            Call<Model> studentModelCall = apiInterface.getData();
+
+
+            Call<Model> studentModelCall = apiInterface.setData(username,password);
             studentModelCall.enqueue(new Callback<Model>() {
                 @Override
                 public void onResponse(Call<Model> call, Response<Model> response) {
-                    model = response.body();
-                    if( username == model.getData().get(0).getUsername()&&password == model.getData().get(0).getPassword()){
-                        Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();;
-                    }
-                    else{
-                        Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onFailure(Call<Model> call, Throwable t) {
-                    Toast.makeText(LoginForm.this, " Connection Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
                 }
             });
+//            Call<Model> studentModelCall = apiInterface.getData();
+//            studentModelCall.enqueue(new Callback<Model>() {
+//                @Override
+//                public void onResponse(Call<Model> call, Response<Model> response) {
+//                    model = response.body();
+//                    Log.i("+++++++++++++++++",model.getData().get(6).getPassword());
+//                    for (int i = 0 ; i< model.getData().size() ; i++){
+//                        if( username.equals(model.getData().get(i).getUsername()) &&
+//                                password.equals(model.getData().get(i).getPassword())){
+//                            Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
+//                            break;
+//                        }
+//                        if (i == model.getData().size() && !username.equals(model.getData().get(i).getUsername())){
+//                            Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Call<Model> call, Throwable t) {
+//                    Toast.makeText(LoginForm.this, " Connection Error", Toast.LENGTH_SHORT).show();
+//                }
+//            });
 
         }
     }
