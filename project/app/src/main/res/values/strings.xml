@@ -28,4 +28,8 @@
     <string name="aboutUs">About Us</string>
     <string name="logout">Logout</string>
     <string name="weekDays">weekDay</string>
+    <string name="lecturetime">05:30 PM</string>
+    <string name="accept">Accept</string>
+    <string name="lecture">Lecture</string>
+    <string name="lectureName">Lecture Name</string>
 </resources>

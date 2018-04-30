@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context="com.example.ahmedel_diasty.mas.HomePage"
     android:background="@drawable/background"
     >
 
@@ -20,8 +21,8 @@
 
     <Button
         android:id="@+id/btn_prof"
-        android:layout_width="600px"
-        android:layout_height="120px"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/firstlogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="65dp"
@@ -30,15 +31,15 @@
         android:textColor="#00ABFA"
         android:drawableLeft="@drawable/logprof"
         android:paddingLeft="20dp"
-        android:textSize="32px"
+        android:textSize="16sp"
         android:onClick="next"
 
         />
 
     <Button
         android:id="@+id/btn_student"
-        android:layout_width="600px"
-        android:layout_height="120px"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_alignEnd="@+id/btn_prof"
         android:layout_alignRight="@+id/btn_prof"
         android:layout_centerHorizontal="true"
@@ -47,27 +48,28 @@
         android:text="@string/logstudent"
         android:background="#FFFFFF"
         android:textColor="#00ABFA"
-        android:drawableLeft="@drawable/small_student"
+        android:drawableLeft="@drawable/student"
         android:drawablePadding="-20dp"
         android:paddingLeft="20dp"
-        android:textSize="32px"
+        android:textSize="16sp"
         android:onClick="next"
         />
 
     <Button
         android:id="@+id/btn_createAcc"
-        android:layout_width="600px"
-        android:layout_height="120px"
-        android:layout_alignStart="@+id/btn_student"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
         android:layout_below="@+id/btn_student"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/rounded_button"
-        android:drawablePadding="-40dp"
-        android:drawableRight="@drawable/small_add"
-        android:onClick="instructor"
-        android:paddingRight="43dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
         android:text="@string/createAccount"
+        android:background="@drawable/rounded_button"
         android:textColor="#FFFFFF"
-        android:textSize="32px" />
+        android:drawableRight="@drawable/add"
+        android:drawablePadding="-40dp"
+        android:paddingRight="43dp"
+        android:textSize="16sp"
+        android:onClick="instructor"
+        />
 
 </RelativeLayout>

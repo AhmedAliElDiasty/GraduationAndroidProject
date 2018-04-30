@@ -6,9 +6,65 @@
     >
 
     <RelativeLayout
+        android:id="@+id/timecount"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:alpha="0"
+        android:background="#000000">
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/imagetime"
+            android:layout_toRightOf="@id/imagetime"
+            android:text="@string/timeleft"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="#00ABFA" />
+
+        <ImageView
+            android:id="@+id/imagetime"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="20dp"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+            android:src="@drawable/pause_time"
+            android:textColor="#00ABFA" />
+
+        <Button
+            android:id="@+id/resume"
+            android:layout_width="70dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="22dp"
+            android:background="@drawable/rounded_button2"
+            android:text="@string/resume"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <View
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#00ABFA"></View>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/mainRow"
-        android:layout_width="wrap_content"
-        android:layout_height="85dp">
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:alpha="1">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_std"
@@ -16,6 +72,7 @@
             android:layout_height="70dp"
             android:layout_marginTop="5dp"
             android:paddingLeft="10dp"
+            android:paddingStart="10dp"
             android:src="@drawable/compbnr_01" />
 
         <TextView
@@ -30,19 +87,20 @@
             android:layout_toRightOf="@+id/image_std"
             android:text="@string/student"
             android:textColor="#00ABFA"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/pause"
             android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_alignBottom="@+id/image_std"
-            android:layout_alignLeft="@+id/student_name"
+            android:layout_height="25dp"
+            android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/student_name"
+            android:layout_alignLeft="@id/image_std"
+            android:layout_marginBottom="17dp"
             android:background="@drawable/rounded_button2"
             android:text="@string/pause"
             android:textColor="#FFFFFF"
-            android:textSize="12dp" />
+            android:textSize="12sp" />
 
         <Switch
             android:id="@+id/switch1"
@@ -69,7 +127,7 @@
             android:layout_toStartOf="@+id/switch1"
             android:text="@string/active"
             android:textColor="#0c5272"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <View
             android:id="@+id/row"
@@ -79,66 +137,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:background="#00ABFA"></View>
-
-
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/timecount"
-        android:layout_width="wrap_content"
-        android:layout_height="85dp"
-        android:visibility="gone">
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/resume"
-            android:layout_marginLeft="11dp"
-            android:layout_marginStart="11dp"
-            android:layout_toEndOf="@+id/textView2"
-            android:layout_toRightOf="@+id/textView2"
-            android:text="@string/timeleft"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="#00ABFA" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/time"
-            android:layout_alignBottom="@+id/time"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="55dp"
-            android:layout_marginStart="55dp"
-            android:text="@string/timeleft2"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="#00ABFA" />
-
-        <Button
-            android:id="@+id/resume"
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="35dp"
-            android:layout_marginRight="35dp"
-            android:background="@drawable/rounded_button2"
-            android:text="Resume"
-            android:textColor="#FFFFFF"
-            android:textSize="12dp" />
-
-        <View
-            android:id="@+id/row2"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="#00ABFA" />
-
-    </RelativeLayout>
-
-    </RelativeLayout>
+</RelativeLayout>
