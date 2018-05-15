@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="85dp"
+    android:background="#000000"
+    >
+
+    <RelativeLayout
+        android:id="@+id/mainRow"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_std"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="10dp"
+            android:src="@drawable/compbnr_01" />
+
+        <TextView
+            android:id="@+id/student_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="14dp"
+            android:layout_toEndOf="@+id/image_std"
+            android:layout_toRightOf="@+id/image_std"
+            android:text="@string/student"
+            android:textColor="#00ABFA"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/pause"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/image_std"
+            android:layout_alignLeft="@+id/student_name"
+            android:layout_alignStart="@+id/student_name"
+            android:background="@drawable/rounded_button2"
+            android:text="@string/pause"
+            android:textColor="#FFFFFF"
+            android:textSize="12dp" />
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/switch_background"
+            android:enabled="true"
+            android:thumb="@drawable/switch_style"
+            android:track="@drawable/track_style" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/switch1"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@+id/switch1"
+            android:layout_toStartOf="@+id/switch1"
+            android:text="@string/active"
+            android:textColor="#0c5272"
+            android:textSize="18dp" />
+
+        <View
+            android:id="@+id/row"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#00ABFA"></View>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/timecount"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/resume"
+            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/textView2"
+            android:layout_toRightOf="@+id/textView2"
+            android:text="@string/timeleft"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="#00ABFA" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/time"
+            android:layout_alignBottom="@+id/time"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="55dp"
+            android:layout_marginStart="55dp"
+            android:text="@string/timeleft2"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="#00ABFA" />
+
+        <Button
+            android:id="@+id/resume"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
+            android:background="@drawable/rounded_button2"
+            android:text="Resume"
+            android:textColor="#FFFFFF"
+            android:textSize="12dp" />
+
+        <View
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#00ABFA" />
+
+    </RelativeLayout>
+
+    </RelativeLayout>

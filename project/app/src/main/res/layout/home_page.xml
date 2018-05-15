@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/firstlogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="71dp"
+
+        android:src="@drawable/compbnr_01"
+        app:civ_border_color="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/btn_student"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_prof"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/firstlogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginStart="42dp"
+        android:background="#FFFFFF"
+        android:drawableLeft="@drawable/logprof"
+
+        android:onClick="next"
+        android:paddingLeft="20dp"
+        android:text="@string/logprof"
+        android:textColor="#00ABFA"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_createAcc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_student" />
+
+    <Button
+        android:id="@+id/btn_student"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_alignEnd="@+id/btn_prof"
+        android:layout_alignRight="@+id/btn_prof"
+        android:layout_below="@+id/btn_prof"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginStart="42dp"
+        android:background="#FFFFFF"
+        android:drawableLeft="@drawable/small_student"
+        android:drawablePadding="-20dp"
+        android:onClick="next"
+        android:paddingLeft="20dp"
+        android:text="@string/logstudent"
+        android:textColor="#00ABFA"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_prof"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstlogo" />
+
+    <Button
+        android:id="@+id/btn_createAcc"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="63dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginStart="42dp"
+        android:background="@drawable/rounded_button"
+        android:drawableEnd="@drawable/small_add"
+        android:drawablePadding="-20dp"
+        android:onClick="instructor"
+        android:paddingRight="20dp"
+        android:text="@string/createAccount"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_prof" />
+
+</android.support.constraint.ConstraintLayout>

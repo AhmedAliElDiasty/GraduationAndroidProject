@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name" translatable="false">AMS</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="logprof">Login As Professor</string>
+    <string name="logstudent">Login As Student</string>
+    <string name="createAccount">Create New Account</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="search">Search</string>
+    <string name="pause">Pause</string>
+    <string name="student">Student1</string>
+    <string name="active">Active</string>
+    <string name="timeleft">05 : 00</string>
+    <string name="timeleft2">Time Left :</string>
+    <string name="resume">Resume</string>
+    <string name="code">Enter code</string>
+    <string name="ok">OK</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+    <string name="endingMessage">Thank you for ending these questions</string>
+    <string name="home">Home</string>
+    <string name="notification">Notification</string>
+    <string name="schedule">Schedule</string>
+    <string name="aboutUs">About Us</string>
+    <string name="logout">Logout</string>
+    <string name="weekDays">weekDay</string>
+</resources>
