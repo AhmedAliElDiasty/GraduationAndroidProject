@@ -3,75 +3,145 @@ package com.example.ahmedel_diasty.mas;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.ahmedel_diasty.mas.Model.Schedule;
 
-import com.example.ahmedel_diasty.mas.Interface.ItemClickListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Ahmed El-Diasty on 24/03/2018.
  */
 
     public class InnerRecyclerAdapter extends RecyclerView.Adapter<InnerRecyclerAdapter.MyViewHolder> {
-    String lectuers[] = {"Computer Science","Information System","Artificial Intellegence", "Data Mining"
-            ,"Neural Network","Graduation project"};
+    Schedule schedule;
     Context context;
-    public InnerRecyclerAdapter(Context context) {
+    String day;
+    public InnerRecyclerAdapter(Context context,String day,Schedule schedule) {
         this.context = context;
+        this.day = day;
+        this.schedule = schedule;
     }
-    Dialog dialog;
+    Dialog myDialog;
+//    String lectuers[] = {"Computer Science","Information System","Artificial Intellegence", "Data Mining"
+//            ,"Neural Network","Graduation project"};
+
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row,parent,false);
-
+        myDialog = new Dialog(context);
+        myDialog.setContentView(R.layout.subject_information);
         return new InnerRecyclerAdapter.MyViewHolder(view);
-
     }
 
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.lectureName.setText(lectuers[position]);
-        dialog = new Dialog(context.getApplicationContext());
-        dialog.setContentView(R.layout.subject_information);
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Toast.makeText(context, "The index number "+position, Toast.LENGTH_SHORT).show();
-                dialog.show();
-                notifyDataSetChanged();
-            }
-        });
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+
+        Log.i("++++++++++++","the item count is"+getItemCount());
+
+        if (schedule.getDataSchedules().get(position).getDay().equals(day)){
+            final String subjectName = schedule.getDataSchedules().get(position).getSubjectName();
+            final String type = schedule.getDataSchedules().get(position).getType();
+            final String startTime = schedule.getDataSchedules().get(position).getStartTime();
+            final String instructorName = schedule.getDataSchedules().get(position).getInstructorName();
+            final String fullMarks = schedule.getDataSchedules().get(position).getTotalMark();
+            final String attendancePlace = schedule.getDataSchedules().get(position).getLocation();
+
+
+
+            holder.rowLectureName.setText(subjectName);
+            holder.rowType.setText(type);
+            holder.rowStartTime.setText(startTime);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Dialog dialog = new Dialog(context);
+                    dialog.setContentView(R.layout.subject_information);
+
+//                holder.time.setText(schedule.getDataSchedules().get(position).gett());
+
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    TextView lectureName = dialog.findViewById(R.id.lectureName);
+                    lectureName.setText(subjectName);
+                    TextView instructor_name = dialog.findViewById(R.id.instructorName);
+                    instructor_name.setText(instructorName);
+                    TextView total_marks = dialog.findViewById(R.id.marksSubject);
+                    total_marks.setText(fullMarks);
+                    TextView start_time = dialog.findViewById(R.id.startTime);
+                    start_time.setText(startTime);
+                    TextView attendance_place = dialog.findViewById(R.id.attendacePlace);
+                    attendance_place.setText(attendancePlace);
+
+
+
+                    Button ok = dialog.findViewById(R.id.okDialog);
+                    ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+                    notifyDataSetChanged();
+                }
+            });
+        }
+        else{
+//            schedule.getDataSchedules().remove(position);
+        }
+
+
+
+
     }
+
 
 
     @Override
     public int getItemCount() {
-        return lectuers.length;
+//        return 5;
+        return schedule.getDataSchedules().size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView lectureName;
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView lectureName,instructorName,startTime,time,marks,attendancePlace;
 
-        ItemClickListener itemClickListener;
+        TextView rowLectureName,rowStartTime,rowType;
 
-        public void setItemClickListener(ItemClickListener itemClickListener){
-            this.itemClickListener = itemClickListener;
-        }
+
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            lectureName = (TextView)itemView.findViewById(R.id.nameTxt);
-            itemView.setOnClickListener(this);
+            lectureName = itemView.findViewById(R.id.lectureName);
+            instructorName = itemView.findViewById(R.id.instructorName);
+            startTime = itemView.findViewById(R.id.startTime);
+            time = itemView.findViewById(R.id.timeToLeft);
+            attendancePlace = itemView.findViewById(R.id.attendacePlace);
+            marks = itemView.findViewById(R.id.marksSubject);
+
+            rowLectureName = itemView.findViewById(R.id.rowLectureName);
+            rowStartTime = itemView.findViewById(R.id.rowStartTime);
+            rowType = itemView.findViewById(R.id.rowType);
         }
-        @Override
-        public void onClick(View view) {
-            itemClickListener.onClick(view,getAdapterPosition());
-        }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.ahmedel_diasty.mas;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ public class HomePage extends AppCompatActivity {
         Intent intent = new Intent(this,LoginForm.class);
         startActivity(intent);
     }
-    public void instructor(View view){
+    public void newAccount(View view){
         Intent intent = new Intent(this,Lectures.class);
         startActivity(intent);
     }

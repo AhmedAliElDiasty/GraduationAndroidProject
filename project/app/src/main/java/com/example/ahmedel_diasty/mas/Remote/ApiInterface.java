@@ -1,6 +1,7 @@
 package com.example.ahmedel_diasty.mas.Remote;
 
 import com.example.ahmedel_diasty.mas.Model.Model;
+import com.example.ahmedel_diasty.mas.Model.Schedule;
 
 
 import retrofit2.Call;
@@ -18,4 +19,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<Model> setData(@Field("username")String Username,
                         @Field("password")String Password);
+
+    @GET("api/schedule")
+    Call<Schedule>getScheduleCall();
 }
