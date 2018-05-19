@@ -1,6 +1,7 @@
 package com.example.ahmedel_diasty.mas;
 
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -54,15 +55,23 @@ import retrofit2.Response;
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-        Log.i("++++++++++++","the item count is"+getItemCount());
 
         if (schedule.getDataSchedules().get(position).getDay().equals(day)){
             final String subjectName = schedule.getDataSchedules().get(position).getSubjectName();
             final String type = schedule.getDataSchedules().get(position).getType();
             final String startTime = schedule.getDataSchedules().get(position).getStartTime();
+            final String endTime = schedule.getDataSchedules().get(position).getEndTime();
             final String instructorName = schedule.getDataSchedules().get(position).getInstructorName();
             final String fullMarks = schedule.getDataSchedules().get(position).getTotalMark();
             final String attendancePlace = schedule.getDataSchedules().get(position).getLocation();
+
+            int start_time = Integer.parseInt(startTime);
+            int end_time = Integer.parseInt(endTime);
+            final int duration_time;
+            if (end_time<start_time)
+                 duration_time = end_time+12-start_time;
+            else
+                duration_time = end_time-start_time;
 
 
 
@@ -70,12 +79,12 @@ import retrofit2.Response;
             holder.rowType.setText(type);
             holder.rowStartTime.setText(startTime);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
                 @Override
                 public void onClick(View v) {
                     final Dialog dialog = new Dialog(context);
                     dialog.setContentView(R.layout.subject_information);
 
-//                holder.time.setText(schedule.getDataSchedules().get(position).gett());
 
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     TextView lectureName = dialog.findViewById(R.id.lectureName);
@@ -83,9 +92,11 @@ import retrofit2.Response;
                     TextView instructor_name = dialog.findViewById(R.id.instructorName);
                     instructor_name.setText(instructorName);
                     TextView total_marks = dialog.findViewById(R.id.marksSubject);
-                    total_marks.setText(fullMarks);
+                    total_marks.setText(fullMarks+" Marks");
                     TextView start_time = dialog.findViewById(R.id.startTime);
                     start_time.setText(startTime);
+                    TextView time = dialog.findViewById(R.id.timeToLeft);
+                    time.setText(duration_time+" Hours");
                     TextView attendance_place = dialog.findViewById(R.id.attendacePlace);
                     attendance_place.setText(attendancePlace);
 
