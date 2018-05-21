@@ -1,5 +1,6 @@
 package com.example.ahmedel_diasty.mas;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,61 +20,67 @@ public class LoginForm extends AppCompatActivity {
     ApiInterface apiInterface;
     EditText APPusername,APPpassword;
     Model model;
+    String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_form);
         APPusername = findViewById(R.id.username);
         APPpassword = findViewById(R.id.password);
+        Intent intent = getIntent();
+        type = intent.getStringExtra("type");
 
     }
     public void test(View view){
-        final String username = APPusername.getText().toString();
-        final String password = APPpassword.getText().toString();
-        model = new Model();
-        if(ValidateLogin(username,password)){
-            apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        if (type.equals("student")){
+            final String username = APPusername.getText().toString();
+            final String password = APPpassword.getText().toString();
+            model = new Model();
+            if(ValidateLogin(username,password)){
+                apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
 
-            Call<Model> studentModelCall = apiInterface.setData(username,password);
-            studentModelCall.enqueue(new Callback<Model>() {
-                @Override
-                public void onResponse(Call<Model> call, Response<Model> response) {
-                    Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
-                }
+                Call<Model> studentModelCall = apiInterface.setData(username,password);
+                studentModelCall.enqueue(new Callback<Model>() {
+                    @Override
+                    public void onResponse(Call<Model> call, Response<Model> response) {
+                        Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(),ManualAttendance.class);
+                        startActivity(intent);
+                    }
 
-                @Override
-                public void onFailure(Call<Model> call, Throwable t) {
-                    Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
-                }
-            });
-//            Call<Model> studentModelCall = apiInterface.getData();
-//            studentModelCall.enqueue(new Callback<Model>() {
-//                @Override
-//                public void onResponse(Call<Model> call, Response<Model> response) {
-//                    model = response.body();
-//                    Log.i("+++++++++++++++++",model.getData().get(6).getPassword());
-//                    for (int i = 0 ; i< model.getData().size() ; i++){
-//                        if( username.equals(model.getData().get(i).getUsername()) &&
-//                                password.equals(model.getData().get(i).getPassword())){
-//                            Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
-//                            break;
-//                        }
-//                        if (i == model.getData().size() && !username.equals(model.getData().get(i).getUsername())){
-//                            Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//
-//
-//                }
-//
-//                @Override
-//                public void onFailure(Call<Model> call, Throwable t) {
-//                    Toast.makeText(LoginForm.this, " Connection Error", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-
+                    @Override
+                    public void onFailure(Call<Model> call, Throwable t) {
+                        Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
+        else{
+            final String username = APPusername.getText().toString();
+            final String password = APPpassword.getText().toString();
+            model = new Model();
+            if(ValidateLogin(username,password)){
+                apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+
+                Call<Model> instructorModelCall = apiInterface.setInstructorDta(username,password);
+                instructorModelCall.enqueue(new Callback<Model>() {
+                    @Override
+                    public void onResponse(Call<Model> call, Response<Model> response) {
+                        Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(),ManualAttendance.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Model> call, Throwable t) {
+                        Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+
     }
     private boolean ValidateLogin(String username , String Password){
         if(username ==null||username.trim().length()==0){

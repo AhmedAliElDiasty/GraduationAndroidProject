@@ -20,6 +20,11 @@ public interface ApiInterface {
     Call<Model> setData(@Field("username")String Username,
                         @Field("password")String Password);
 
+    @POST("api/instructorLogin")
+    @FormUrlEncoded
+    Call<Model> setInstructorDta(@Field("username")String Username,
+                        @Field("password")String Password);
+
     @GET("api/schedule")
     Call<Schedule>getScheduleCall();
 }
