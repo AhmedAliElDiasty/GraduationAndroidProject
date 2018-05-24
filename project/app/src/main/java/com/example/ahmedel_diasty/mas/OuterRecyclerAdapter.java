@@ -25,10 +25,10 @@ import retrofit2.Response;
 
 public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdapter.MyViewHolder> {
 
-    ApiInterface apiInterface;
-    LayoutInflater layoutInflater;
-    Context context;
-    String[] week = {"Saturday", "Sunday", "Monday", "Tuesday",
+    private ApiInterface apiInterface;
+    private LayoutInflater layoutInflater;
+    private Context context;
+    private String[] week = {"Saturday", "Sunday", "Monday", "Tuesday",
             "Wednesday","Thursday"};
 
     Schedule schedule;

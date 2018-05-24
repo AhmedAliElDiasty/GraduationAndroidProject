@@ -21,7 +21,7 @@
                 android:id="@+id/instructorImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/myphoto" />
+                android:src="@drawable/albert" />
         </com.github.florent37.shapeofview.shapes.CircleView>
 
         <TextView
@@ -40,7 +40,7 @@
         android:id="@+id/lectureNameRow"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginStart="25dp">
 
         <ImageView
             android:layout_width="40dp"
@@ -50,14 +50,14 @@
         <ImageView
             android:layout_width="3dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:src="@color/enable_thumb" />
 
         <TextView
             android:id="@+id/instructorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/instructor_name"
             android:textColor="@color/enable_thumb"
@@ -69,7 +69,7 @@
         android:id="@+id/startTimeRow"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginStart="25dp">
 
         <ImageView
             android:layout_width="40dp"
@@ -79,14 +79,14 @@
         <ImageView
             android:layout_width="3dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:src="@color/enable_thumb" />
 
         <TextView
             android:id="@+id/startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/start_time"
             android:textColor="@color/enable_thumb"
@@ -98,7 +98,7 @@
         android:id="@+id/timeRow"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginStart="25dp">
 
         <ImageView
             android:layout_width="40dp"
@@ -108,14 +108,14 @@
         <ImageView
             android:layout_width="3dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:src="@color/enable_thumb" />
 
         <TextView
             android:id="@+id/timeToLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/time"
             android:textColor="@color/enable_thumb"
@@ -127,7 +127,7 @@
         android:id="@+id/Marks"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginStart="25dp">
 
         <ImageView
             android:layout_width="40dp"
@@ -137,14 +137,14 @@
         <ImageView
             android:layout_width="3dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:src="@color/enable_thumb" />
 
         <TextView
             android:id="@+id/marksSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/marks"
             android:textColor="@color/enable_thumb"
@@ -155,7 +155,7 @@
         android:id="@+id/hallRow"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginStart="25dp">
 
         <ImageView
             android:layout_width="40dp"
@@ -165,14 +165,14 @@
         <ImageView
             android:layout_width="3dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:src="@color/enable_thumb" />
 
         <TextView
             android:id="@+id/attendacePlace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="@string/attendance_place"
             android:textColor="@color/enable_thumb"

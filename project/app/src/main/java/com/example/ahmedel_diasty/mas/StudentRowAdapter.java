@@ -1,6 +1,6 @@
 package com.example.ahmedel_diasty.mas;
 
-/**
+/*
  * Created by Ahmed El-Diasty on 06/04/2018.
  */
 import android.content.Context;
@@ -18,6 +18,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ahmedel_diasty.mas.Model.StudentsInLocation;
+
 import java.util.ArrayList;
 import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -28,15 +30,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.RowViewHolder>{
 
-    public StudentRowAdapter(Context context, ArrayList<String>data) {
+    public StudentRowAdapter(Context context, StudentsInLocation students) {
         this.context = context;
-        this.data = data;
+        this.students = students;
         layoutInflater = LayoutInflater.from(context);
 
     }
     private CountDownTimer countDownTimer;
-    private Context context;
-    private ArrayList<String> data;
+    Context context;
+    StudentsInLocation students;
     private LayoutInflater layoutInflater;
     private SparseBooleanArray itemStateArray= new SparseBooleanArray();
 
@@ -50,7 +52,7 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
     }
     @Override
     public void onBindViewHolder(final RowViewHolder holder, final int position) {
-        holder.StudentName.setText(data.get(position));
+        holder.StudentName.setText(students.getData().get(position).getName());
         holder.bind(position);
         holder.pause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,10 +110,10 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return students.getData().size();
     }
-    public void filterList(ArrayList<String> filteredList){
-        this.data = filteredList;
+    public void filterList(StudentsInLocation students){
+        this.students = students;
         notifyDataSetChanged();
     }
 
@@ -137,6 +139,7 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
             resume =  itemView.findViewById(R.id.resume);
             time =  itemView.findViewById(R.id.time);
             pause.setEnabled(false);
+
             aSwitch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -157,13 +160,11 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(aSwitch.isChecked()){
                         status.setTextColor(Color.rgb(0, 171, 250));
-                        status.setText("Active");
                         status.setEnabled(false);
                         pause.setEnabled(true);
                     }
                     else{
                         status.setTextColor(Color.rgb(12, 82, 114));
-                        status.setText("Active");
                         pause.setEnabled(false);
                     }
                 }
@@ -171,7 +172,7 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
 
         }
         void bind(int position) {
-            if (!itemStateArray.get(position, false)) {
+            if (students.getData().get(position).getStatus().equals("0")) {
                 aSwitch.setChecked(false);
             }
             else {

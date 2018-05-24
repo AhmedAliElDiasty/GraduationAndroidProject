@@ -2,6 +2,7 @@ package com.example.ahmedel_diasty.mas.Remote;
 
 import com.example.ahmedel_diasty.mas.Model.Model;
 import com.example.ahmedel_diasty.mas.Model.Schedule;
+import com.example.ahmedel_diasty.mas.Model.StudentsInLocation;
 
 
 import retrofit2.Call;
@@ -27,4 +28,14 @@ public interface ApiInterface {
 
     @GET("api/schedule")
     Call<Schedule>getScheduleCall();
+
+    @GET("api/students_in_Location")
+    Call<StudentsInLocation>getStudentsCall();
+
+
+    @POST("api/students_in_Location")
+    Call<StudentsInLocation>setStudentsCall(@Field("id")int id,
+                                            @Field("name")String name,
+                                            @Field("level")String level,
+                                            @Field("status")boolean status);
 }
