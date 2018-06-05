@@ -10,6 +10,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface ApiInterface {
     @GET("api/students")
@@ -33,9 +34,10 @@ public interface ApiInterface {
     Call<StudentsInLocation>getStudentsCall();
 
 
-    @POST("api/students_in_Location")
+    @PUT("api/students_in_Location")
     Call<StudentsInLocation>setStudentsCall(@Field("id")int id,
                                             @Field("name")String name,
                                             @Field("level")String level,
                                             @Field("status")boolean status);
+
 }

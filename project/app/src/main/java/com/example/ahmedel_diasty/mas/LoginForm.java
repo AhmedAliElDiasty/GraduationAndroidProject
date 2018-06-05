@@ -3,7 +3,9 @@ package com.example.ahmedel_diasty.mas;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ public class LoginForm extends AppCompatActivity {
     EditText APPusername,APPpassword;
     Model model;
     String type;
+    Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +32,16 @@ public class LoginForm extends AppCompatActivity {
         APPpassword = findViewById(R.id.password);
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
+        button = findViewById(R.id.btn_login);
 
     }
     public void test(View view){
+        button.setEnabled(false);
         if (type.equals("student")){
             final String username = APPusername.getText().toString();
             final String password = APPpassword.getText().toString();
             model = new Model();
+
             if(ValidateLogin(username,password)){
                 apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
@@ -44,14 +50,25 @@ public class LoginForm extends AppCompatActivity {
                 studentModelCall.enqueue(new Callback<Model>() {
                     @Override
                     public void onResponse(Call<Model> call, Response<Model> response) {
-                        Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(),ManualAttendance.class);
-                        startActivity(intent);
+                        if (response.isSuccessful()){
+                            Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
+                            Log.i("++++++++++++++++++",response.message());
+                            Intent intent = new Intent(getApplicationContext(),ManualAttendance.class);
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
+                            button.setEnabled(true);
+                        }
+
+
+
                     }
 
                     @Override
                     public void onFailure(Call<Model> call, Throwable t) {
                         Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
+                        button.setEnabled(true);
                     }
                 });
             }
@@ -76,19 +93,23 @@ public class LoginForm extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<Model> call, Throwable t) {
                         Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
+                        button.setEnabled(true);
                     }
                 });
             }
         }
 
+
     }
     private boolean ValidateLogin(String username , String Password){
         if(username ==null||username.trim().length()==0){
             Toast.makeText(this, "username is Required", Toast.LENGTH_SHORT).show();
+            button.setEnabled(true);
             return false;
         }
         if(Password ==null||Password.trim().length()==0){
             Toast.makeText(this, "Password is Required", Toast.LENGTH_SHORT).show();
+            button.setEnabled(true);
             return false;
         }
             return true;
