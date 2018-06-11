@@ -12,6 +12,17 @@ public class Model {
     @SerializedName("all_Students")
     private ArrayList<Data> data ;
 
+    @SerializedName("studentLogin")
+    private String studentLogin;
+
+    public String getStudentLogin() {
+        return studentLogin;
+    }
+
+    public void setStudentLogin(String studentLogin) {
+        this.studentLogin = studentLogin;
+    }
+
 
     public Model() {
     }
@@ -23,4 +34,6 @@ public class Model {
     public void setData(ArrayList<Data> data) {
         this.data = data;
     }
+
+
 }

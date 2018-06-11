@@ -73,7 +73,18 @@ public class Data {
     @SerializedName("telephone")
     private String  telephone;
 
-    public Data(int id, String name, String username,String password, String email, String level, String telephone) {
+    @SerializedName("studentLogin")
+    private String studentLogin;
+
+    public String getStudentLogin() {
+        return studentLogin;
+    }
+
+    public void setStudentLogin(String studentLogin) {
+        this.studentLogin = studentLogin;
+    }
+
+    public Data(int id, String name, String username, String password, String email, String level, String telephone) {
         this.id = id;
         this.name = name;
         this.username = username;

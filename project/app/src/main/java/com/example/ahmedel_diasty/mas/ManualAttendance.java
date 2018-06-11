@@ -1,6 +1,5 @@
 package com.example.ahmedel_diasty.mas;
 
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,7 +16,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.ahmedel_diasty.mas.Model.StudentsInLocation;
-import com.example.ahmedel_diasty.mas.Model.StudentsInLocationData;
 import com.example.ahmedel_diasty.mas.Remote.ApiClient;
 import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -33,13 +31,11 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
     private StudentRowAdapter adapter;
     private MaterialSearchView searchView;
 
-    ApiInterface apiInterface;
+    private ApiInterface apiInterface;
     StudentsInLocation studentsInLocation;
-    StudentsInLocation studentsInLocation2;
-    ArrayList<StudentsInLocationData> students;
 
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar =  findViewById(R.id.toolbar);
@@ -54,11 +50,9 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
         navigationView.setNavigationItemSelectedListener(this);
 
         studentsInLocation =new StudentsInLocation();
-        studentsInLocation2 =new StudentsInLocation();
-        students = new ArrayList<StudentsInLocationData>();
 
 //        //Search View
-        searchView = findViewById(R.id.searchview);
+        searchView = (MaterialSearchView)findViewById(R.id.searchview);
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
@@ -71,45 +65,39 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
 
             }
         });
-//        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                if(newText != null && !newText.isEmpty()){
-//                    ArrayList<String> search = new ArrayList<>();
-////                    for(String s : data){
-////                        if(s.contains(newText)||s.toLowerCase().contains(newText))
-////                            search.add(s);
-////                    }
-////                    StudentRowAdapter adapter1 = new StudentRowAdapter(getApplicationContext(),search);
-////                    recyclerView.setAdapter(adapter1);
-//                }
-//                else{
-//                    recyclerView.setAdapter(adapter);
-//                }
-//                return true;
-//            }
-//        });
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText != null && !newText.isEmpty()){
+                    ArrayList<String> search = new ArrayList<>();
+//                    for(String s : data){
+//                        if(s.contains(newText)||s.toLowerCase().contains(newText))
+//                            search.add(s);
+//                    }
+//                    StudentRowAdapter adapter1 = new StudentRowAdapter(getApplicationContext(),search);
+//                    recyclerView.setAdapter(adapter1);
+                }
+                else{
+                    recyclerView.setAdapter(adapter);
+                }
+                return true;
+            }
+        });
 
         recyclerView = findViewById(R.id.recycler_view);
 
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<StudentsInLocation>locationCall = apiInterface.getStudentsCall();
-
-
         locationCall.enqueue(new Callback<StudentsInLocation>() {
-
-
-
-
             @Override
-            public void onResponse(Call<StudentsInLocation> call, final Response<StudentsInLocation> response) {
+            public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
                 studentsInLocation = response.body();
 
                 searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
@@ -122,19 +110,12 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
                     @Override
                     public boolean onQueryTextChange(String newText) {
                         if(newText != null && !newText.isEmpty()){
-                            students.clear();
                             for(int i = 0;i<studentsInLocation.getData().size();i++){
                                 String s = studentsInLocation.getData().get(i).getName();
-
-                                if(s.contains(newText)||s.toLowerCase().contains(newText)){
-                                    Log.i("++++++++++++","The student name is "+studentsInLocation.getData().get(i).getName());
-                                    students.add(studentsInLocation.getData().get(i));
-                                }
-                                studentsInLocation2.setData(students);
-
-
+                                if(s.contains(newText)||s.toLowerCase().contains(newText))
+                                    studentsInLocation.getData().add(studentsInLocation.getData().get(i));
                             }
-                                StudentRowAdapter adapter1 = new StudentRowAdapter(getApplicationContext(),studentsInLocation2);
+                            StudentRowAdapter adapter1 = new StudentRowAdapter(getApplicationContext(),studentsInLocation);
                             recyclerView.setAdapter(adapter1);
                         }
                         else{
@@ -147,6 +128,7 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
                 adapter = new StudentRowAdapter(getApplicationContext(), studentsInLocation);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                Log.i("+++++++++++++","Hello world");
             }
 
             @Override
@@ -180,7 +162,7 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem  item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 

@@ -24,6 +24,7 @@ public class LoginForm extends AppCompatActivity {
     Model model;
     String type;
     Button button;
+    String status = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,32 +43,35 @@ public class LoginForm extends AppCompatActivity {
             final String password = APPpassword.getText().toString();
             model = new Model();
 
+
             if(ValidateLogin(username,password)){
                 apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
 
 
                 Call<Model> studentModelCall = apiInterface.setData(username,password);
                 studentModelCall.enqueue(new Callback<Model>() {
                     @Override
                     public void onResponse(Call<Model> call, Response<Model> response) {
-                        if (response.isSuccessful()){
-                            Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
-                            Log.i("++++++++++++++++++",response.message());
+
+                        status = response.body().getStudentLogin();
+
+                        if (status.equals("login successfully".trim())){
+                            Log.i("++++++++++++++++++",status);
                             Intent intent = new Intent(getApplicationContext(),ManualAttendance.class);
                             startActivity(intent);
+                            button.setEnabled(true);
                         }
                         else{
+                            Log.i("++++++++++++++++++",status);
                             Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
                             button.setEnabled(true);
                         }
-
-
-
                     }
 
                     @Override
                     public void onFailure(Call<Model> call, Throwable t) {
-                        Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginForm.this, "Faliure", Toast.LENGTH_SHORT).show();
                         button.setEnabled(true);
                     }
                 });
@@ -92,7 +96,7 @@ public class LoginForm extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Model> call, Throwable t) {
-                        Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginForm.this, "Faliure", Toast.LENGTH_SHORT).show();
                         button.setEnabled(true);
                     }
                 });
