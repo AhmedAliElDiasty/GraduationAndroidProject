@@ -1,6 +1,7 @@
 package com.example.ahmedel_diasty.mas;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,17 +54,29 @@ public class LoginForm extends AppCompatActivity {
                 studentModelCall.enqueue(new Callback<Model>() {
                     @Override
                     public void onResponse(Call<Model> call, Response<Model> response) {
+                        model = response.body();
 
-                        status = response.body().getStudentLogin();
+//                        status = response.body().getStudentLogin().get(0).getName();
 
-                        if (status.equals("login successfully".trim())){
-                            Log.i("++++++++++++++++++",status);
+
+                        Log.i("++++++++++++++++",""+response.code());
+
+                        if (response.isSuccessful()){
+                            SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("id",model.getStudentLogin().get(0).getId());
+                            editor.putString("username",model.getStudentLogin().get(0).getUsername());
+                            editor.putString("name",model.getStudentLogin().get(0).getName());
+                            editor.putString("email",model.getStudentLogin().get(0).getEmail());
+                            editor.putString("level",model.getStudentLogin().get(0).getLevel());
+                            editor.apply();
+                            Log.i("++++++++++++++++",""+model.getStudentLogin().size());
+
                             Intent intent = new Intent(getApplicationContext(),ManualAttendance.class);
                             startActivity(intent);
                             button.setEnabled(true);
                         }
                         else{
-                            Log.i("++++++++++++++++++",status);
                             Toast.makeText(LoginForm.this, "Username or Password is inCorrect", Toast.LENGTH_SHORT).show();
                             button.setEnabled(true);
                         }

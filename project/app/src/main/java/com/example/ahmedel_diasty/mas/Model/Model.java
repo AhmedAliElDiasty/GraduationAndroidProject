@@ -9,30 +9,21 @@ import java.util.ArrayList;
  */
 
 public class Model {
-    @SerializedName("all_Students")
-    private ArrayList<Data> data ;
-
     @SerializedName("studentLogin")
-    private String studentLogin;
+    private ArrayList<Data> studentLogin ;
 
-    public String getStudentLogin() {
-        return studentLogin;
-    }
 
-    public void setStudentLogin(String studentLogin) {
-        this.studentLogin = studentLogin;
-    }
 
 
     public Model() {
     }
 
-    public ArrayList<Data> getData() {
-        return data;
+    public ArrayList<Data> getStudentLogin() {
+        return studentLogin;
     }
 
-    public void setData(ArrayList<Data> data) {
-        this.data = data;
+    public void setStudentLogin(ArrayList<Data> studentLogin) {
+        this.studentLogin = studentLogin;
     }
 
 

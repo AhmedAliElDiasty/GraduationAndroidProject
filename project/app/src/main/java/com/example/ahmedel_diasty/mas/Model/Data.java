@@ -3,11 +3,11 @@ package com.example.ahmedel_diasty.mas.Model;
 import com.google.gson.annotations.SerializedName;
 
 public class Data {
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -59,7 +59,7 @@ public class Data {
         this.telephone = telephone;
     }
     @SerializedName("id")
-    private int id;
+    private String id;
     @SerializedName("name")
     private String name;
     @SerializedName("username")
@@ -84,7 +84,7 @@ public class Data {
         this.studentLogin = studentLogin;
     }
 
-    public Data(int id, String name, String username, String password, String email, String level, String telephone) {
+    public Data(String id, String name, String username, String password, String email, String level, String telephone) {
         this.id = id;
         this.name = name;
         this.username = username;

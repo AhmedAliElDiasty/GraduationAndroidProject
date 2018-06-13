@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.ahmedel_diasty.mas.Model.StudentsInLocation;
+import com.example.ahmedel_diasty.mas.Model.StudentsInLocationData;
 import com.example.ahmedel_diasty.mas.Remote.ApiClient;
 import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -33,6 +34,8 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
 
     private ApiInterface apiInterface;
     StudentsInLocation studentsInLocation;
+    StudentsInLocation studentsInLocation2;
+    ArrayList<StudentsInLocationData> students;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +52,12 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        students =new ArrayList<StudentsInLocationData>();
         studentsInLocation =new StudentsInLocation();
+        studentsInLocation2 =new StudentsInLocation();
 
 //        //Search View
-        searchView = (MaterialSearchView)findViewById(R.id.searchview);
+        searchView = findViewById(R.id.searchview);
         searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
             @Override
             public void onSearchViewShown() {
@@ -63,30 +68,6 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
             public void onSearchViewClosed() {
                 recyclerView.setAdapter(adapter);
 
-            }
-        });
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if(newText != null && !newText.isEmpty()){
-                    ArrayList<String> search = new ArrayList<>();
-//                    for(String s : data){
-//                        if(s.contains(newText)||s.toLowerCase().contains(newText))
-//                            search.add(s);
-//                    }
-//                    StudentRowAdapter adapter1 = new StudentRowAdapter(getApplicationContext(),search);
-//                    recyclerView.setAdapter(adapter1);
-                }
-                else{
-                    recyclerView.setAdapter(adapter);
-                }
-                return true;
             }
         });
 
@@ -110,12 +91,20 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
                     @Override
                     public boolean onQueryTextChange(String newText) {
                         if(newText != null && !newText.isEmpty()){
+                            students.clear();
                             for(int i = 0;i<studentsInLocation.getData().size();i++){
                                 String s = studentsInLocation.getData().get(i).getName();
-                                if(s.contains(newText)||s.toLowerCase().contains(newText))
-                                    studentsInLocation.getData().add(studentsInLocation.getData().get(i));
+                                if(s.contains(newText)||s.toLowerCase().contains(newText)){
+                                    students.add(studentsInLocation.getData().get(i));
+                                    Log.i("++++++++++++",""+students);
+
+                                }
+                                studentsInLocation2.setData(students);
+
+
                             }
-                            StudentRowAdapter adapter1 = new StudentRowAdapter(getApplicationContext(),studentsInLocation);
+
+                            StudentRowAdapter adapter1 = new StudentRowAdapter(getApplicationContext(),studentsInLocation2);
                             recyclerView.setAdapter(adapter1);
                         }
                         else{
