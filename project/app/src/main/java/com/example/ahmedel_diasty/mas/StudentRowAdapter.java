@@ -19,10 +19,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ahmedel_diasty.mas.Model.StudentsInLocation;
+import com.example.ahmedel_diasty.mas.Remote.ApiClient;
+import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
 
 import java.util.ArrayList;
 import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by ahmed on 3/22/18.
@@ -41,6 +46,7 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
     StudentsInLocation students;
     private LayoutInflater layoutInflater;
     private SparseBooleanArray itemStateArray= new SparseBooleanArray();
+    private ApiInterface apiInterface;
 
     @Override
     public RowViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -172,11 +178,50 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
 
         }
         void bind(int position) {
+            apiInterface = ApiClient.getClient().create(ApiInterface.class);
+
+
             if (students.getData().get(position).getStatus().equals("0")) {
+                Call<StudentsInLocation> locationCall =
+                        apiInterface.setStudentsCall(students.getData().get(position).getId(),
+                                students.getData().get(position).getId(),
+                                students.getData().get(position).getName(),
+                                students.getData().get(position).getLevel(),
+                                "0");
+                locationCall.enqueue(new Callback<StudentsInLocation>() {
+                    @Override
+                    public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
+                        Toast.makeText(context, "Switch Off", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<StudentsInLocation> call, Throwable t) {
+                        Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
                 aSwitch.setChecked(false);
             }
             else {
                 aSwitch.setChecked(true);
+                Call<StudentsInLocation> locationCall =
+                        apiInterface.setStudentsCall(students.getData().get(position).getId(),
+                                students.getData().get(position).getId(),
+                                students.getData().get(position).getName(),
+                                students.getData().get(position).getLevel(),
+                                "1");
+                locationCall.enqueue(new Callback<StudentsInLocation>() {
+                    @Override
+                    public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
+                        Toast.makeText(context, "Switch On", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<StudentsInLocation> call, Throwable t) {
+                        Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
         }
     }}
