@@ -19,12 +19,10 @@ public interface ApiInterface {
 
 
     @POST("api/studentLogin")
-    @FormUrlEncoded
     Call<Model> setData(@Field("username")String Username,
                         @Field("password")String Password);
 
     @POST("api/instructorLogin")
-    @FormUrlEncoded
     Call<Model> setInstructorDta(@Field("username")String Username,
                         @Field("password")String Password);
 
@@ -35,11 +33,13 @@ public interface ApiInterface {
     Call<StudentsInLocation>getStudentsCall();
 
 
+    @FormUrlEncoded
     @PUT("api/students_in_Location/{id}")
-    Call<StudentsInLocation>setStudentsCall(@Path("id") int ID,
-                                            @Field("id")int id,
-                                            @Field("name")String name,
-                                            @Field("level")String level,
+    Call<StudentsInLocation>setStudentsCall(@Path("id")int ID,
                                             @Field("status")String status);
+
+//    @FormUrlEncoded
+//    @GET("api/students_in_Location/{id}")
+//    Call<StudentsInLocation>getStudentsCall(@Path("id")int ID);
 
 }

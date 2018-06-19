@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Schedule {
 
-    @SerializedName("schedule")
+    @SerializedName("data")
     private ArrayList<DataSchedule> dataSchedules ;
 
     public Schedule(ArrayList<DataSchedule> dataSchedules) {

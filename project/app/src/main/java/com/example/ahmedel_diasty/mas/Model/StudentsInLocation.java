@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 public class StudentsInLocation {
-    @SerializedName("students_in_Location")
+    @SerializedName("data")
     private ArrayList<StudentsInLocationData> data ;
 
     public StudentsInLocation(ArrayList<StudentsInLocationData> data) {

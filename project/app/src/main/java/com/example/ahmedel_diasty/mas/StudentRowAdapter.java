@@ -1,12 +1,13 @@
 package com.example.ahmedel_diasty.mas;
 
-/*
+/**
  * Created by Ahmed El-Diasty on 06/04/2018.
  */
 import android.content.Context;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,7 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
     StudentsInLocation students;
     private LayoutInflater layoutInflater;
     private SparseBooleanArray itemStateArray= new SparseBooleanArray();
-    private ApiInterface apiInterface;
+    ApiInterface apiInterface;
 
     @Override
     public RowViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -54,6 +55,7 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
         RowViewHolder viewHolder;
         View view = layoutInflater.inflate(R.layout.student_row_item,parent,false);
         viewHolder = new RowViewHolder(view);
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
         return viewHolder;
     }
     @Override
@@ -164,14 +166,64 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
             aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    int adapterPosition = getAdapterPosition();
                     if(aSwitch.isChecked()){
+//                        Log.i("++++++++++++++++",""+students.getData().get(adapterPosition).getId());
+                        Toast.makeText(context, " "+students.getData().get(adapterPosition).getId(), Toast.LENGTH_SHORT).show();
+//                        Call<StudentsInLocation> locationCall = apiInterface.getStudentsCall(adapterPosition);
+//                        locationCall.enqueue(new Callback<StudentsInLocation>() {
+//                            @Override
+//                            public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
+////                                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<StudentsInLocation> call, Throwable t) {
+////                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+                        Call<StudentsInLocation> locationCall =
+                                apiInterface.setStudentsCall(students.getData().get(adapterPosition).getId(),"1");
+                        locationCall.enqueue(new Callback<StudentsInLocation>() {
+                            @Override
+                            public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
+
+                                Toast.makeText(context, "Switch On", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<StudentsInLocation> call, Throwable t) {
+                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
                         status.setTextColor(Color.rgb(0, 171, 250));
+                        status.setText("Active");
                         status.setEnabled(false);
                         pause.setEnabled(true);
+
                     }
                     else{
+//                        Toast.makeText(context, students.getData().get(adapterPosition).getId(), Toast.LENGTH_SHORT).show();
+                        Call<StudentsInLocation> locationCall =
+                                apiInterface.setStudentsCall(students.getData().get(adapterPosition).getId(),"0");
+                        locationCall.enqueue(new Callback<StudentsInLocation>() {
+                            @Override
+                            public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
+
+                                Toast.makeText(context, "Switch Off", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<StudentsInLocation> call, Throwable t) {
+                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
                         status.setTextColor(Color.rgb(12, 82, 114));
+                        status.setText("Active");
                         pause.setEnabled(false);
+
                     }
                 }
             });
@@ -182,46 +234,12 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
 
 
             if (students.getData().get(position).getStatus().equals("0")) {
-                Call<StudentsInLocation> locationCall =
-                        apiInterface.setStudentsCall(students.getData().get(position).getId(),
-                                students.getData().get(position).getId(),
-                                students.getData().get(position).getName(),
-                                students.getData().get(position).getLevel(),
-                                "0");
-                locationCall.enqueue(new Callback<StudentsInLocation>() {
-                    @Override
-                    public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
-                        Toast.makeText(context, "Switch Off", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onFailure(Call<StudentsInLocation> call, Throwable t) {
-                        Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
                 aSwitch.setChecked(false);
             }
             else {
                 aSwitch.setChecked(true);
-                Call<StudentsInLocation> locationCall =
-                        apiInterface.setStudentsCall(students.getData().get(position).getId(),
-                                students.getData().get(position).getId(),
-                                students.getData().get(position).getName(),
-                                students.getData().get(position).getLevel(),
-                                "1");
-                locationCall.enqueue(new Callback<StudentsInLocation>() {
-                    @Override
-                    public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
-                        Toast.makeText(context, "Switch On", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void onFailure(Call<StudentsInLocation> call, Throwable t) {
-                        Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
             }
         }
     }}

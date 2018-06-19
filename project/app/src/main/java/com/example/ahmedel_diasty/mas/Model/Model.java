@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 
 public class Model {
-    @SerializedName("studentLogin")
+    @SerializedName("data")
     private ArrayList<Data> studentLogin ;
 
 
