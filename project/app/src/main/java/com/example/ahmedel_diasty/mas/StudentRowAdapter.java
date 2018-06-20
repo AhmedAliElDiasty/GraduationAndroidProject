@@ -168,32 +168,19 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     int adapterPosition = getAdapterPosition();
                     if(aSwitch.isChecked()){
-//                        Log.i("++++++++++++++++",""+students.getData().get(adapterPosition).getId());
-                        Toast.makeText(context, " "+students.getData().get(adapterPosition).getId(), Toast.LENGTH_SHORT).show();
-//                        Call<StudentsInLocation> locationCall = apiInterface.getStudentsCall(adapterPosition);
-//                        locationCall.enqueue(new Callback<StudentsInLocation>() {
-//                            @Override
-//                            public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
-////                                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<StudentsInLocation> call, Throwable t) {
-////                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
                         Call<StudentsInLocation> locationCall =
                                 apiInterface.setStudentsCall(students.getData().get(adapterPosition).getId(),"1");
                         locationCall.enqueue(new Callback<StudentsInLocation>() {
                             @Override
                             public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
-
-                                Toast.makeText(context, "Switch On", Toast.LENGTH_SHORT).show();
+                                Log.i("++++++++++","Switch on");
+//                                Toast.makeText(context, "Switch On", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onFailure(Call<StudentsInLocation> call, Throwable t) {
-                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
+                                Log.i("++++++++++","failure");
+//                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
 
                             }
                         });

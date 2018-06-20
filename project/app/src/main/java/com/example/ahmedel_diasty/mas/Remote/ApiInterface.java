@@ -17,11 +17,12 @@ public interface ApiInterface {
     @GET("api/students")
     Call<Model> getData();
 
-
+    @FormUrlEncoded
     @POST("api/studentLogin")
     Call<Model> setData(@Field("username")String Username,
                         @Field("password")String Password);
 
+    @FormUrlEncoded
     @POST("api/instructorLogin")
     Call<Model> setInstructorDta(@Field("username")String Username,
                         @Field("password")String Password);
