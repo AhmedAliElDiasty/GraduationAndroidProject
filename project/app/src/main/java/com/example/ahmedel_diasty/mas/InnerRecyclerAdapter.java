@@ -37,7 +37,7 @@ import retrofit2.Response;
         this.day = day;
         this.schedule = schedule;
     }
-    Dialog myDialog;
+
 //    String lectuers[] = {"Computer Science","Information System","Artificial Intellegence", "Data Mining"
 //            ,"Neural Network","Graduation project"};
 
@@ -46,8 +46,6 @@ import retrofit2.Response;
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row,parent,false);
-        myDialog = new Dialog(context);
-        myDialog.setContentView(R.layout.subject_information);
         return new InnerRecyclerAdapter.MyViewHolder(view);
     }
 
@@ -84,8 +82,6 @@ import retrofit2.Response;
                 public void onClick(View v) {
                     final Dialog dialog = new Dialog(context);
                     dialog.setContentView(R.layout.subject_information);
-
-
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     TextView lectureName = dialog.findViewById(R.id.lectureName);
                     lectureName.setText(subjectName);
@@ -100,13 +96,11 @@ import retrofit2.Response;
                     TextView attendance_place = dialog.findViewById(R.id.attendacePlace);
                     attendance_place.setText(attendancePlace);
 
-
-
                     Button ok = dialog.findViewById(R.id.okDialog);
                     ok.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            dialog.dismiss();
+                        dialog.dismiss();
                         }
                     });
 
@@ -114,6 +108,43 @@ import retrofit2.Response;
                     notifyDataSetChanged();
                 }
             });
+          /*  final Dialog myDialog1;
+                            myDialog1 = new Dialog(context);
+                            myDialog1.setContentView(R.layout.lecture_alert);
+                            myDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            TextView Lecture_name = myDialog1.findViewById(R.id.lecture_name);
+                            Lecture_name.setText(subjectName);
+                            TextView Lecture_time = myDialog1.findViewById(R.id.lecture_time);
+                            Lecture_time.setText(startTime);
+                            TextView Lecture_place = myDialog1.findViewById(R.id.lecture_section);
+                            Lecture_place.setText(attendancePlace);
+                            Button apply = myDialog1.findViewById(R.id.apply);
+                            apply.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    final Dialog myDialog = new Dialog(context);
+                                    myDialog.setContentView(R.layout.check_code);
+                                    myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                    Button go = myDialog.findViewById(R.id.input);
+                                    go.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            myDialog.dismiss();
+                                        }
+                                    });
+                                    myDialog.show();
+                                    notifyDataSetChanged();
+                                }
+                            });
+                            Button dismiss = myDialog1.findViewById(R.id.dismissB);
+                            dismiss.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    myDialog1.dismiss();
+                                }
+                            });
+                            myDialog1.show();
+                            notifyDataSetChanged();*/
         }
         else{
 //            schedule.getDataSchedules().remove(position);

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.ahmedel_diasty.mas.Model.Schedule;
 import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
 
 public class HomePage extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class HomePage extends AppCompatActivity {
         startActivity(intent);
     }
     public void newAccount(View view){
-        Intent intent = new Intent(this,Lectures.class);
+        Intent intent = new Intent(this,Home.class);
         startActivity(intent);
     }
 }

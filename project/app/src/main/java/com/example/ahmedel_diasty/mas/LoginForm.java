@@ -72,7 +72,7 @@ public class LoginForm extends AppCompatActivity {
                             editor.apply();
                             Log.i("++++++++++++++++",""+model.getStudentLogin().size());
 
-                            Intent intent = new Intent(getApplicationContext(),ManualAttendance.class);
+                            Intent intent = new Intent(getApplicationContext(),Home.class);
                             startActivity(intent);
                             button.setEnabled(true);
                         }
