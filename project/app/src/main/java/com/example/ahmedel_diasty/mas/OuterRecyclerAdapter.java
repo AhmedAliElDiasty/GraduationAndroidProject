@@ -1,5 +1,6 @@
 package com.example.ahmedel_diasty.mas;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ahmedel_diasty.mas.Model.DataSchedule;
 import com.example.ahmedel_diasty.mas.Model.Schedule;
 import com.example.ahmedel_diasty.mas.Remote.ApiClient;
 import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,10 +36,13 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
             "Wednesday","Thursday"};
 
     Schedule schedule;
+    Schedule schedule2;
+    ArrayList<DataSchedule> subjects;
 
     public OuterRecyclerAdapter(Context context) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
+        subjects = new ArrayList<>();
     }
 
     @Override
@@ -45,7 +52,7 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, @SuppressLint("RecyclerView")final int position) {
 
         final boolean[] visible = {false};
         holder.weekDay.setText(week[position]);
@@ -64,6 +71,7 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                     holder.innerList.setLayoutManager(holder.layoutManager);
                     holder.innerList.setHasFixedSize(true);
                     schedule = new Schedule();
+                    schedule2 = new Schedule();
 
 
                     apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -72,14 +80,22 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                         @Override
                         public void onResponse(Call<Schedule> call, Response<Schedule> response) {
                             schedule = response.body();
-                            holder.recyclerAdapter = new InnerRecyclerAdapter(context,week[position],schedule);
-                            holder.innerList.setAdapter(holder.recyclerAdapter);
-                            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-//                            Toast.makeText(context, schedule.getDataSchedules().size(), Toast.LENGTH_SHORT).show();
-                            Log.i("++++++++++++",schedule.getDataSchedules().get(0).getDay());
-//                if (schedule.getDataSchedules().get(position).getDay().equals(day)){
+                            subjects.clear();
 
-//                }
+                            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+                            for (int i = 0; i < schedule.getDataSchedules().size(); i++) {
+                                if (schedule.getDataSchedules().get(i).getDay().equals(week[position])){
+                                    subjects.add(schedule.getDataSchedules().get(i));
+                                    Log.i("type",schedule.getDataSchedules().get(i).getType());
+                                }
+
+
+
+                            }
+                            schedule2.setDataSchedules(subjects);
+                            holder.recyclerAdapter = new InnerRecyclerAdapter(context,schedule2);
+                            holder.innerList.setAdapter(holder.recyclerAdapter);
+                            Log.i("++++++++++++",""+subjects);
 
                         }
 
@@ -124,10 +140,10 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            weekDay = (TextView) itemView.findViewById(R.id.weekDays);
-            details = (TextView) itemView.findViewById(R.id.details);
-            line = (ImageView) itemView.findViewById(R.id.line);
-            innerList = (RecyclerView) itemView.findViewById(R.id.innerList);
+            weekDay = itemView.findViewById(R.id.weekDays);
+            details = itemView.findViewById(R.id.details);
+            line = itemView.findViewById(R.id.line);
+            innerList = itemView.findViewById(R.id.innerList);
 
 
             rowLectureName = itemView.findViewById(R.id.rowLectureName);

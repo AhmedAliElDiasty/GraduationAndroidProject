@@ -52,7 +52,7 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        students =new ArrayList<StudentsInLocationData>();
+        students =new ArrayList<>();
         studentsInLocation =new StudentsInLocation();
         studentsInLocation2 =new StudentsInLocation();
 

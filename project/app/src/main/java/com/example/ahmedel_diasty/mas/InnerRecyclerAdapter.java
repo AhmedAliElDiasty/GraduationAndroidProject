@@ -32,16 +32,10 @@ import retrofit2.Response;
     Schedule schedule;
     Context context;
     String day;
-    public InnerRecyclerAdapter(Context context,String day,Schedule schedule) {
+    public InnerRecyclerAdapter(Context context,Schedule schedule) {
         this.context = context;
-        this.day = day;
         this.schedule = schedule;
     }
-
-//    String lectuers[] = {"Computer Science","Information System","Artificial Intellegence", "Data Mining"
-//            ,"Neural Network","Graduation project"};
-
-
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -54,7 +48,7 @@ import retrofit2.Response;
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
 
-        if (schedule.getDataSchedules().get(position).getDay().equals(day)){
+//        if (schedule.getDataSchedules().get(position).getDay().equals(day)){
             final String subjectName = schedule.getDataSchedules().get(position).getSubjectName();
             final String type = schedule.getDataSchedules().get(position).getType();
             final String startTime = schedule.getDataSchedules().get(position).getStartTime();
@@ -63,13 +57,13 @@ import retrofit2.Response;
             final String fullMarks = schedule.getDataSchedules().get(position).getTotalMark();
             final String attendancePlace = schedule.getDataSchedules().get(position).getLocation();
 
-            int start_time = Integer.parseInt(startTime);
-            int end_time = Integer.parseInt(endTime);
-            final int duration_time;
-            if (end_time<start_time)
-                 duration_time = end_time+12-start_time;
-            else
-                duration_time = end_time-start_time;
+//            int start_time = Integer.parseInt(startTime);
+//            int end_time = Integer.parseInt(endTime);
+//            final int duration_time;
+//            if (end_time<start_time)
+//                 duration_time = end_time+12-start_time;
+//            else
+//                duration_time = end_time-start_time;
 
 
 
@@ -91,8 +85,8 @@ import retrofit2.Response;
                     total_marks.setText(fullMarks+" Marks");
                     TextView start_time = dialog.findViewById(R.id.startTime);
                     start_time.setText(startTime);
-                    TextView time = dialog.findViewById(R.id.timeToLeft);
-                    time.setText(duration_time+" Hours");
+//                    TextView time = dialog.findViewById(R.id.timeToLeft);
+//                    time.setText(duration_time+" Hours");
                     TextView attendance_place = dialog.findViewById(R.id.attendacePlace);
                     attendance_place.setText(attendancePlace);
 
@@ -108,58 +102,12 @@ import retrofit2.Response;
                     notifyDataSetChanged();
                 }
             });
-          /*  final Dialog myDialog1;
-                            myDialog1 = new Dialog(context);
-                            myDialog1.setContentView(R.layout.lecture_alert);
-                            myDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                            TextView Lecture_name = myDialog1.findViewById(R.id.lecture_name);
-                            Lecture_name.setText(subjectName);
-                            TextView Lecture_time = myDialog1.findViewById(R.id.lecture_time);
-                            Lecture_time.setText(startTime);
-                            TextView Lecture_place = myDialog1.findViewById(R.id.lecture_section);
-                            Lecture_place.setText(attendancePlace);
-                            Button apply = myDialog1.findViewById(R.id.apply);
-                            apply.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    final Dialog myDialog = new Dialog(context);
-                                    myDialog.setContentView(R.layout.check_code);
-                                    myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                    Button go = myDialog.findViewById(R.id.input);
-                                    go.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            myDialog.dismiss();
-                                        }
-                                    });
-                                    myDialog.show();
-                                    notifyDataSetChanged();
-                                }
-                            });
-                            Button dismiss = myDialog1.findViewById(R.id.dismissB);
-                            dismiss.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    myDialog1.dismiss();
-                                }
-                            });
-                            myDialog1.show();
-                            notifyDataSetChanged();*/
-        }
-        else{
-//            schedule.getDataSchedules().remove(position);
-        }
-
-
-
-
     }
 
 
 
     @Override
     public int getItemCount() {
-//        return 5;
         return schedule.getDataSchedules().size();
     }
 
