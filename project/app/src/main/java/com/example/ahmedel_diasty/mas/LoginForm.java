@@ -68,6 +68,7 @@ public class LoginForm extends AppCompatActivity {
                             editor.putString("username",model.getStudentLogin().get(0).getUsername());
                             editor.putString("name",model.getStudentLogin().get(0).getName());
                             editor.putString("email",model.getStudentLogin().get(0).getEmail());
+                            editor.putString("role",model.getStudentLogin().get(0).getRole());
                             editor.putString("level",model.getStudentLogin().get(0).getLevel());
                             editor.apply();
                             Log.i("++++++++++++++++",""+model.getStudentLogin().size());
@@ -96,14 +97,22 @@ public class LoginForm extends AppCompatActivity {
             model = new Model();
             if(ValidateLogin(username,password)){
                 apiInterface = ApiClient.getClient().create(ApiInterface.class);
-
-
                 Call<Model> instructorModelCall = apiInterface.setInstructorDta(username,password);
                 instructorModelCall.enqueue(new Callback<Model>() {
                     @Override
                     public void onResponse(Call<Model> call, Response<Model> response) {
+                        model = response.body();
                         Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(),ManualAttendance.class);
+                        SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("id",model.getStudentLogin().get(0).getId());
+                        editor.putString("username",model.getStudentLogin().get(0).getUsername());
+                        editor.putString("name",model.getStudentLogin().get(0).getName());
+                        editor.putString("email",model.getStudentLogin().get(0).getEmail());
+                        editor.putString("level","default");
+                        editor.putString("role",model.getStudentLogin().get(0).getRole());
+                        editor.apply();
+                        Intent intent = new Intent(getApplicationContext(),Home.class);
                         startActivity(intent);
                     }
 

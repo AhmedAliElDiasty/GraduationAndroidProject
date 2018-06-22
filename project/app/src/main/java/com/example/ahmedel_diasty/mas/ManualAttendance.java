@@ -72,48 +72,12 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
         });
 
         recyclerView = findViewById(R.id.recycler_view);
-
-
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<StudentsInLocation>locationCall = apiInterface.getStudentsCall();
         locationCall.enqueue(new Callback<StudentsInLocation>() {
             @Override
-            public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
+            public void onResponse(Call<StudentsInLocation> call, final Response<StudentsInLocation> response) {
                 studentsInLocation = response.body();
-
-                searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        if(newText != null && !newText.isEmpty()){
-                            students.clear();
-                            for(int i = 0;i<studentsInLocation.getData().size();i++){
-                                String s = studentsInLocation.getData().get(i).getName();
-                                if(s.contains(newText)||s.toLowerCase().contains(newText)){
-                                    students.add(studentsInLocation.getData().get(i));
-                                    Log.i("++++++++++++",""+students);
-
-                                }
-                                studentsInLocation2.setData(students);
-
-
-                            }
-
-                            StudentRowAdapter adapter1 = new StudentRowAdapter(getApplicationContext(),studentsInLocation2);
-                            recyclerView.setAdapter(adapter1);
-                        }
-                        else{
-                            recyclerView.setAdapter(adapter);
-                        }
-                        return true;
-                    }
-                });
-
                 adapter = new StudentRowAdapter(getApplicationContext(), studentsInLocation);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -126,7 +90,38 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
 
             }
         });
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                if(newText != null && !newText.isEmpty()){
+                    students.clear();
+                    for(int i = 0;i<studentsInLocation.getData().size();i++){
+                        String s = studentsInLocation.getData().get(i).getName();
+                        if(s.contains(newText)||s.toLowerCase().contains(newText)){
+                            students.add(studentsInLocation.getData().get(i));
+                            Log.i("++++++++++++",""+students);
+
+                        }
+                        studentsInLocation2.setData(students);
+
+
+                    }
+
+                    StudentRowAdapter adapter1 = new StudentRowAdapter(getApplicationContext(),studentsInLocation2);
+                    recyclerView.setAdapter(adapter1);
+                }
+                else{
+                    recyclerView.setAdapter(adapter);
+                }
+                return true;
+            }
+        });
     }
 
 

@@ -72,6 +72,8 @@ public class Data {
     private String level;
     @SerializedName("telephone")
     private String  telephone;
+    @SerializedName("role")
+    private String role;
 
     @SerializedName("studentLogin")
     private String studentLogin;
@@ -84,7 +86,7 @@ public class Data {
         this.studentLogin = studentLogin;
     }
 
-    public Data(String id, String name, String username, String password, String email, String level, String telephone) {
+    public Data(String id, String name, String username, String password, String email, String level, String telephone, String role) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -92,5 +94,14 @@ public class Data {
         this.email = email;
         this.level = level;
         this.telephone = telephone;
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

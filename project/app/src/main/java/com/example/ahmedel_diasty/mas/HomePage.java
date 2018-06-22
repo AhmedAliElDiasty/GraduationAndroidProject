@@ -13,7 +13,7 @@ import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
 
 public class HomePage extends AppCompatActivity {
     final String DEFAULT = "default";
-    String username ,name ,email ,level;
+    String username ,name ,email ,level ,role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +23,13 @@ public class HomePage extends AppCompatActivity {
          name = sharedPreferences.getString("name",DEFAULT);
          email = sharedPreferences.getString("email",DEFAULT);
          level = sharedPreferences.getString("level",DEFAULT);
+         role = sharedPreferences.getString("role",DEFAULT);
          if(!username.equals(DEFAULT)){
-             Intent intent = new Intent(this,ManualAttendance.class);
+             Intent intent = new Intent(this,Home.class);
              intent.putExtra("name",name);
              intent.putExtra("email",email);
              intent.putExtra("level",level);
+             intent.putExtra("role",role);
              intent.putExtra("type","student");
              startActivity(intent);
          }

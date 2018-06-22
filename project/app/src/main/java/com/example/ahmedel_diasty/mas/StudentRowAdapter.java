@@ -174,18 +174,18 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
                             @Override
                             public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
                                 Log.i("++++++++++","Switch on");
+                                notify();
+
 //                                Toast.makeText(context, "Switch On", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onFailure(Call<StudentsInLocation> call, Throwable t) {
                                 Log.i("++++++++++","failure");
-//                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
 
                             }
                         });
                         status.setTextColor(Color.rgb(0, 171, 250));
-                        status.setText("Active");
                         status.setEnabled(false);
                         pause.setEnabled(true);
 
@@ -197,16 +197,19 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
                         locationCall.enqueue(new Callback<StudentsInLocation>() {
                             @Override
                             public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
-
-                                Toast.makeText(context, "Switch Off", Toast.LENGTH_SHORT).show();
+                                Log.i("+++++++++++","Switch Off");
+//                                Toast.makeText(context, "Switch Off", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
                             public void onFailure(Call<StudentsInLocation> call, Throwable t) {
-                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
+                                Log.i("++++++++++","failure");
+
+//                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
 
                             }
                         });
+//                        notifyDataSetChanged();
                         status.setTextColor(Color.rgb(12, 82, 114));
                         status.setText("Active");
                         pause.setEnabled(false);
