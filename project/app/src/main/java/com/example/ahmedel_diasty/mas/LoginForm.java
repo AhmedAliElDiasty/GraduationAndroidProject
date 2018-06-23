@@ -80,6 +80,8 @@ public class LoginForm extends AppCompatActivity {
                             Log.i("++++++++++++++++",""+model.getStudentLogin().size());
 
                             Intent intent = new Intent(getApplicationContext(),Home.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             button.setEnabled(true);
                         }
@@ -119,6 +121,8 @@ public class LoginForm extends AppCompatActivity {
                         editor.putString("role",model.getStudentLogin().get(0).getRole());
                         editor.apply();
                         Intent intent = new Intent(getApplicationContext(),Home.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     }
 

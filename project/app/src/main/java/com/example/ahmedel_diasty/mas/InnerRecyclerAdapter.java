@@ -47,9 +47,7 @@ import retrofit2.Response;
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-
-//        if (schedule.getDataSchedules().get(position).getDay().equals(day)){
-            final String subjectName = schedule.getDataSchedules().get(position).getSubjectName();
+final String subjectName = schedule.getDataSchedules().get(position).getSubjectName();
             final String type = schedule.getDataSchedules().get(position).getType();
             final String startTime = schedule.getDataSchedules().get(position).getStartTime();
             final String endTime = schedule.getDataSchedules().get(position).getEndTime();
