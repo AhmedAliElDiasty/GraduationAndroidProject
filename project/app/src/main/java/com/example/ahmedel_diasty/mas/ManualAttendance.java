@@ -1,5 +1,8 @@
 package com.example.ahmedel_diasty.mas;
 
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.ahmedel_diasty.mas.Model.Schedule;
 import com.example.ahmedel_diasty.mas.Model.StudentsInLocation;
 import com.example.ahmedel_diasty.mas.Model.StudentsInLocationData;
 import com.example.ahmedel_diasty.mas.Remote.ApiClient;
@@ -149,7 +153,29 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        if(id == R.id.home){
+            Intent intent = new Intent(this,Home.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.schedule){
+            Intent intent = new Intent(this, Lectures.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.aboutus){
+            // will be added
+        }
+        else {
+            id = R.id.logout;
+            SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("username","default");
+            editor.putString("name","default");
+            editor.putString("role","default");
+            editor.putString("level","default");
+            editor.apply();
+            Intent intent = new Intent(this,HomePage.class);
+            startActivity(intent);
+        }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

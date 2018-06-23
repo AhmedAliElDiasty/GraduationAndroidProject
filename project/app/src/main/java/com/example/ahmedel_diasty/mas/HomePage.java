@@ -3,10 +3,12 @@ package com.example.ahmedel_diasty.mas;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.ahmedel_diasty.mas.Model.Schedule;
 import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
@@ -14,10 +16,14 @@ import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
 public class HomePage extends AppCompatActivity {
     final String DEFAULT = "default";
     String username ,name ,email ,level ,role;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
+        textView = (TextView)findViewById(R.id.proj_name1);
+        Typeface typeface = Typeface.createFromAsset(getAssets(),"MTCORSVA.TTF");
+        textView.setTypeface(typeface);
         SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
          username = sharedPreferences.getString("username",DEFAULT);
          name = sharedPreferences.getString("name",DEFAULT);

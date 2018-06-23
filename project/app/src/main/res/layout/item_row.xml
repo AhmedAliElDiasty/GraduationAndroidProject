@@ -9,6 +9,7 @@
     card_view:cardElevation="0dp"
     android:id="@+id/row_item"
     android:padding="6dp"
+    android:alpha=".6"
     >
 
 
@@ -16,7 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:background="#00abfa"
+        android:background="#000000"
+
+
         >
 
 

@@ -8,10 +8,6 @@
             android:title="@string/home"
             android:icon="@drawable/home"
             />
-        <item android:id="@+id/notification"
-            android:title="@string/notification"
-            android:icon="@drawable/notification"
-            />
         <item android:id="@+id/schedule"
             android:title="@string/schedule"
             android:icon="@drawable/schedule"

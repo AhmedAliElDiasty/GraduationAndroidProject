@@ -13,7 +13,7 @@
     <string name="search">Search</string>
     <string name="pause">Pause</string>
     <string name="student">Student1</string>
-    <string name="active">Active</string>
+    <string name="active">OFF</string>
     <string name="timeleft">05 : 00</string>
     <string name="timeleft2">Time Left :</string>
     <string name="resume">Resume</string>
