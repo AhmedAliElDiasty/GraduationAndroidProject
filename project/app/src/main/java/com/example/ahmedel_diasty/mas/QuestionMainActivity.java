@@ -230,7 +230,7 @@ public class QuestionMainActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError error) {
                         // handle error
-                        Toast.makeText(QuestionMainActivity.this,"error post " , Toast.LENGTH_LONG).show();
+                        Toast.makeText(QuestionMainActivity.this," post " , Toast.LENGTH_LONG).show();
                         Log.d("DataQuestion",error.getMessage());
                         Log.d("DataQuestion msg",answers.toString());
 
