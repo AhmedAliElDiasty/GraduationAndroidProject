@@ -30,7 +30,8 @@
         <activity
             android:name=".Lectures"
             android:screenOrientation="portrait" />
-        <activity android:name=".Home"></activity>
+        <activity android:name=".Home" />
+        <activity android:name=".Notification.Notification"></activity>
     </application>
 
 </manifest>
