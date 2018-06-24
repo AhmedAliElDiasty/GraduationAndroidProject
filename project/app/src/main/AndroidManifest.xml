@@ -28,6 +28,9 @@
             android:name=".ManualAttendance"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".QuestionMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Lectures"
             android:screenOrientation="portrait" />
         <activity android:name=".Home" />

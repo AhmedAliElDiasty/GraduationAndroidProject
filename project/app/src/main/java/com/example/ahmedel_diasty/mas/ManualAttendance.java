@@ -161,6 +161,10 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
             Intent intent = new Intent(this, Lectures.class);
             startActivity(intent);
         }
+        else if(id == R.id.questionMenu){
+            Intent intent = new Intent(this, QuestionMainActivity.class);
+            startActivity(intent);
+        }
         else if(id == R.id.aboutus){
             // will be added
         }
