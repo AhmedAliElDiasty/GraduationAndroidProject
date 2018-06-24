@@ -19,7 +19,8 @@ public class NetworkConnection extends AppCompatActivity {
 
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-
+        Log.d("wifiInfo", wifiInfo.toString());
+        Log.d("SSID",wifiInfo.getSSID());
         getNetworkClass(getApplicationContext());
         getWifiName(getApplicationContext());
 

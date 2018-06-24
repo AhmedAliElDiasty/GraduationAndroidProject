@@ -38,6 +38,7 @@
         <activity android:name=".Home" />
         <activity android:name=".Notification.Notification" />
         <activity android:name=".AboutUs.AboutUs"></activity>
+        <activity android:name=".Network.NetworkConnection"></activity>
     </application>
 
 </manifest>
