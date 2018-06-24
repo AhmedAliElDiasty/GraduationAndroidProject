@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.ahmedel_diasty.mas.AboutUs.AboutUs;
+
 import java.util.Objects;
 
 public class Home extends AppCompatActivity {
@@ -49,13 +51,19 @@ public class Home extends AppCompatActivity {
 
     }
 
+    // Schedule Button
+
     public void schedule(View view) {
         Intent intent = new Intent(this,Lectures.class);
         startActivity(intent);
     }
 
-    public void aboutUs(View view) {
+    // About us Button
+    public void aboutUs(View view){
+        Intent intent = new Intent(getApplicationContext(), AboutUs.class);
+        startActivity(intent);
     }
+
 
     public void currentAttendance(View view) {
         final Dialog dialog = new Dialog(this);
@@ -155,6 +163,7 @@ public class Home extends AppCompatActivity {
         alertDialog.show();
 
     }
+
 
 
 }
