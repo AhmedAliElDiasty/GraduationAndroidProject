@@ -11,7 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-public class NetworkTypeConnection  extends AppCompatActivity {
+public class NetworkConnection extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
