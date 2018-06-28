@@ -79,8 +79,8 @@ final String subjectName = schedule.getDataSchedules().get(position).getSubjectN
                     lectureName.setText(subjectName);
                     TextView instructor_name = dialog.findViewById(R.id.instructorName);
                     instructor_name.setText(instructorName);
-                    TextView total_marks = dialog.findViewById(R.id.marksSubject);
-                    total_marks.setText(fullMarks+" Marks");
+                    TextView total_marks = dialog.findViewById(R.id.counter);
+                    total_marks.setText(fullMarks);
                     TextView start_time = dialog.findViewById(R.id.startTime);
                     start_time.setText(startTime);
 //                    TextView time = dialog.findViewById(R.id.timeToLeft);

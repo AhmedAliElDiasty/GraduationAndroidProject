@@ -4,8 +4,8 @@
     android:layout_width="260dp"
     android:layout_height="400dp"
     android:layout_gravity="center"
-    android:alpha="1"
-    android:background="#99000000"
+    android:alpha=".8"
+    android:background="#000000"
     android:orientation="vertical">
 
     <LinearLayout
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/lecturename"
-            android:textColor="@color/enable_thumb"
+            android:textColor="#fe3536"
             android:textSize="20sp"
 
             />
@@ -47,20 +47,16 @@
             android:layout_height="30dp"
             android:src="@drawable/instructor2" />
 
-        <ImageView
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:src="@color/enable_thumb" />
+
 
         <TextView
             android:id="@+id/instructorName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="5dp"
             android:text="@string/instructor_name"
-            android:textColor="@color/enable_thumb"
+            android:textColor="#CCCCCC "
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -76,20 +72,14 @@
             android:layout_height="30dp"
             android:src="@drawable/start_time" />
 
-        <ImageView
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:src="@color/enable_thumb" />
-
         <TextView
             android:id="@+id/startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="5dp"
             android:text="@string/start_time"
-            android:textColor="@color/enable_thumb"
+            android:textColor="#CCCCCC"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -105,20 +95,14 @@
             android:layout_height="30dp"
             android:src="@drawable/time" />
 
-        <ImageView
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:src="@color/enable_thumb" />
-
         <TextView
             android:id="@+id/timeToLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="5dp"
             android:text="@string/time"
-            android:textColor="@color/enable_thumb"
+            android:textColor="#CCCCCC"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -133,21 +117,24 @@
             android:layout_width="40dp"
             android:layout_height="30dp"
             android:src="@drawable/marks" />
-
-        <ImageView
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:src="@color/enable_thumb" />
+        <TextView
+            android:id="@+id/counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/count"
+            android:textColor=" #fe3536 "
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/marksSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:text="@string/marks"
-            android:textColor="@color/enable_thumb"
+            android:textColor="#CCCCCC"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -162,31 +149,26 @@
             android:layout_height="30dp"
             android:src="@drawable/attendance_place" />
 
-        <ImageView
-            android:layout_width="3dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:src="@color/enable_thumb" />
-
         <TextView
             android:id="@+id/attendacePlace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="5dp"
             android:text="@string/attendance_place"
-            android:textColor="@color/enable_thumb"
+            android:textColor="#CCCCCC"
             android:textSize="16sp" />
     </LinearLayout>
 
     <Button
         android:id="@+id/okDialog"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         android:layout_marginTop="45dp"
-        android:background="@color/enable_thumb"
+        android:background="#000000"
+        android:foreground="@drawable/rounded_button3"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:text="@string/ok"

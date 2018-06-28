@@ -9,7 +9,7 @@
     card_view:cardElevation="0dp"
     android:id="@+id/row_item"
     android:padding="6dp"
-    android:alpha=".6"
+    android:alpha="0.6"
     >
 
 
@@ -23,12 +23,12 @@
         >
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/spacecraftImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:padding="5dp"
-            android:src="@drawable/instructor2" />
+            android:src="@drawable/albert" />
         />
     </LinearLayout>
 
@@ -99,7 +99,12 @@
                 />
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dddddd"></View>
     </LinearLayout>
+
 
 
 

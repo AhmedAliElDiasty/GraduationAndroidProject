@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
-        android:background="#00ABFA">
+        android:background="#000000">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -22,8 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/search"
+            android:textColor="#fe3536"
             android:visibility="gone"
-            android:textColorHint="#00ABFA"
+            android:textColorHint="#fe3536  "
             />
 
     </android.support.design.widget.AppBarLayout>

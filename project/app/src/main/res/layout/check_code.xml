@@ -16,7 +16,7 @@
         android:layout_alignLeft="@id/code_design"
         android:layout_marginTop="14dp"
         android:text="@string/password"
-        android:textColor="#FFFFFF"
+        android:textColor=" #fe3536 "
         android:textSize="18sp" />
 
 
@@ -37,11 +37,11 @@
             android:paddingEnd="10dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/code_theme"
+            android:background="@drawable/rounded_button3"
             android:inputType="numberPassword"
             android:paddingLeft="15dp"
             android:paddingStart="15dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#fe3536"
             />
     </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +52,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/code_design"
         android:layout_marginBottom="11dp"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/home_back"
         android:text="@string/ok"
         android:textColor="#FFFFFF"
         android:id="@+id/input"/>

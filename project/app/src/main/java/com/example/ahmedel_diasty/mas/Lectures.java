@@ -2,17 +2,19 @@ package com.example.ahmedel_diasty.mas;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 public class Lectures extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     public OuterRecyclerAdapter recyclerAdapter;
     public RecyclerView.LayoutManager outerLayoutManager;
-
+    TextView textView;
 
     // Attemp to initialize Inner RecyclerView
 

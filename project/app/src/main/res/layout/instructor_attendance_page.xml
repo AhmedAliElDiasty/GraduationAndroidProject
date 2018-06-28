@@ -25,8 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Computer Vision"
-        android:textColor="#00abfa"
-        android:textSize="28sp" />
+        android:textColor="#fe3536"
+        android:textSize="26sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Started At :"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textColor="#ffffff"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
@@ -54,11 +54,11 @@
             android:id="@+id/IAP_StartedTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="11dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="5dp"
             android:text="10 : 30 Am"
-            android:textColor="#00abfa"
-            android:textSize="24sp" />
+            android:textColor="#fe3536"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Time left :"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textColor="#ffffff"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
@@ -88,11 +88,11 @@
             android:id="@+id/IAP_TimeLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:text="01:15 "
-            android:textColor="#00abfa"
-            android:textSize="24sp" />
+            android:textColor="#fe3536"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -113,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Students :"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textColor="#ffffff"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
@@ -124,11 +124,11 @@
             android:id="@+id/IAP_Students"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:text="50"
-            android:textColor="#00abfa"
-            android:textSize="24sp" />
+            android:textColor="#fe3536"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -145,7 +145,7 @@
         android:paddingLeft="20dp"
         android:text="Manual Attendance"
         android:textColor="#FFFFFF"
-        android:textSize="17sp" />
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/IAP_EndSession"
@@ -157,5 +157,5 @@
         android:background="@drawable/rounded_button3"
         android:text="End Session"
         android:textColor="#FFFFFF"
-        android:textSize="17sp" />
+        android:textSize="15sp" />
 </LinearLayout>

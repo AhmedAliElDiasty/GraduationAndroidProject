@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.ahmedel_diasty.mas.QuestionMainActivity"
     android:orientation="vertical"
+    android:background="@drawable/test"
     >
 
 
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_alignParentStart="true"
         android:id="@+id/slideViewPager"
         >
@@ -27,27 +27,29 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="260dp"
     android:id="@+id/radiogroup"
-    android:layout_below="@+id/slide_desc"
-    android:layout_marginLeft="10dp">
+    android:layout_marginLeft="10dp"
+    >
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:buttonTint="#fe3536 "
         android:id="@+id/bad"
         android:text="bad"
         android:textStyle="bold"
-        android:textColor="#00abfa"
-
+        android:textColor="#aaaaaa"
         />
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:id="@+id/good"
+        android:buttonTint="#fe3536 "
+
         android:text="good"
         android:textStyle="bold"
-        android:textColor="#00abfa"
+        android:textColor="#aaaaaa"
         android:layout_marginTop="10dp"
 
         />
@@ -58,7 +60,8 @@
         android:id="@+id/very_good"
         android:text="very good"
         android:textStyle="bold"
-        android:textColor="#00abfa"
+        android:buttonTint="#fe3536"
+        android:textColor="#aaaaaa"
         android:layout_marginTop="10dp"
 
         />
@@ -69,7 +72,8 @@
         android:id="@+id/excellent"
         android:text="excellent"
         android:textStyle="bold"
-        android:textColor="#00abfa"
+        android:buttonTint="#fe3536"
+        android:textColor="#aaaaaa"
         android:layout_marginTop="10dp"
 
         />
@@ -85,13 +89,14 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/radiogroup"
         android:text="Next"
-        android:textColor="#00abfa"
+        android:textColor="#aaaaaa"
         android:textSize="20dp"
         android:visibility="visible"
         android:layout_marginTop="30dp"
         android:layout_marginRight="35dp"
         android:textStyle="bold"
-        android:background="@drawable/background_edit_text2"
+        android:background="#000000"
+        android:foreground="@drawable/home_back"
         />
 
     <Button
@@ -101,12 +106,13 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/radiogroup"
         android:text="Back"
-        android:textColor="#00abfa"
+        android:textColor="#aaaaaa"
         android:textSize="20dp"
         android:visibility="invisible"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="35dp"
-        android:background="@drawable/background_edit_text2"
+        android:foreground="@drawable/home_back"
+        android:background="#000000"
         android:textStyle="bold"
         />
     <Button
@@ -117,12 +123,13 @@
         android:layout_below="@+id/radiogroup"
         android:text="Send"
         android:visibility="invisible"
-        android:textColor="#00abfa"
+        android:textColor="#aaaaaa"
         android:textSize="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="35dp"
         android:textStyle="bold"
-        android:background="@drawable/background_edit_text2"
+        android:foreground="@drawable/home_back"
+        android:background="#000000"
         />
 
 
