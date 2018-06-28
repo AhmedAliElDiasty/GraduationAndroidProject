@@ -1,26 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="25dp">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:src="@drawable/question1"
         android:id="@+id/slide_image"
-        />
+        android:layout_width="340dp"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/feedback"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/indecator2"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="397dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/indecator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/slide_desc"
+        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slide_image" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_below="@+id/slide_image"
-        android:layout_height="wrap_content"
-        android:text="What do you think about this Lecture ? "
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:textColor="#00abfa"
         android:id="@+id/slide_desc"
-        />
+        android:layout_width="290dp"
+        android:layout_height="67dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/indecator2"
+        android:layout_marginBottom="356dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="What do you think about this Lecture ? "
+        android:textColor="#fe3536"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slide_image" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

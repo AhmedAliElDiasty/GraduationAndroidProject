@@ -12,18 +12,13 @@
         android:orientation="horizontal"
         android:background="#00FFFFFF">
 
-        <TextView
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
             android:id="@+id/details"
-            android:layout_width="30dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="6"
-            android:paddingStart="10dp"
-            android:text="+"
-            android:textColor="@color/colorBlue"
-            android:textSize="40sp"
-
-        />
+            android:src="@drawable/caret_down_white"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="18dp"/>
 
         <TextView
             android:id="@+id/weekDays"
@@ -31,11 +26,22 @@
             android:layout_height="70dp"
             android:layout_weight="1"
             android:text="@string/weekDays"
-            android:textColor="@color/colorBlue"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic"
             android:textSize="28sp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:layout_marginTop="5dp"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="16dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="22dp"
+            android:visibility="invisible"
+            android:id="@+id/indecator"
+            android:src="@drawable/indecator" />
+
 
     </LinearLayout>
 
@@ -51,11 +57,11 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <ImageView
-        android:id="@+id/line"
+    <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:srcCompat="@color/colorPrimary" />
+        android:background="#DDDDDD"
+        ></View>
 
 
 </LinearLayout>

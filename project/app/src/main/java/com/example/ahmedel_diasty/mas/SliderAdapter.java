@@ -1,6 +1,7 @@
 package com.example.ahmedel_diasty.mas;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,14 +34,8 @@ public class SliderAdapter extends PagerAdapter {
     }
 
 
-    public int[] slide_image = {
-            R.drawable.question1,
-            R.drawable.question2,
-            R.drawable.question3,
-            R.drawable.question4,
-            R.drawable.question5
+    public int slide_image = R.drawable.feedback;
 
-    };
 
 
     @Override
@@ -50,7 +45,7 @@ public class SliderAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == (RelativeLayout) object;
+        return view == (ConstraintLayout) object;
     }
 
     @Override
@@ -65,7 +60,7 @@ public class SliderAdapter extends PagerAdapter {
 
 
         SlideDescription.setText(questions.get(position).getQuestion());
-       SlideImageView.setImageResource(slide_image[position]);
+       SlideImageView.setImageResource(slide_image);
 
         container.addView(view);
 
@@ -75,7 +70,7 @@ public class SliderAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
 
-        container.removeView((RelativeLayout) object);
+        container.removeView((ConstraintLayout) object);
 
     }
 }

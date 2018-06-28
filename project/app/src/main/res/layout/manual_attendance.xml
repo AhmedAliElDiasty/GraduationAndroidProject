@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="590dp"
         android:layout_weight="15"
-        android:background="@drawable/test"
+        android:background="#1c1c1c"
         >
 
         <android.support.v7.widget.RecyclerView
@@ -39,13 +39,20 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/rowrec"
+            android:background="#fe3536"
+            android:visibility="visible"></View>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#00ABFA"
+            android:layout_height="59dp"
+            android:background="#000000"
+            android:layout_below="@id/rowrec"
             android:text="@string/dismiss"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="#fe3536"
             android:textSize="17sp"/>
     </RelativeLayout>
 

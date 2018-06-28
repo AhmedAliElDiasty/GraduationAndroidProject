@@ -17,7 +17,7 @@
         android:id="@+id/lecture_name"
         android:text="@string/lectureName"
         android:textAppearance="?android:textAppearanceLarge"
-        android:textColor="#00ABFA" />
+        android:textColor="#fe3536" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -80,7 +80,7 @@
         android:layout_marginRight="31dp"
         android:layout_toLeftOf="@+id/dismissB"
         android:layout_toStartOf="@+id/dismissB"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/rounded_button3"
         android:text="@string/accept"
         android:textColor="#FFFFFF" />
 
@@ -93,7 +93,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="56dp"
         android:layout_marginRight="56dp"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/rounded_button3"
         android:text="@string/dismiss"
         android:textColor="#FFFFFF" />
 </RelativeLayout>

@@ -2,6 +2,9 @@ package com.example.ahmedel_diasty.mas;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +21,7 @@ import com.example.ahmedel_diasty.mas.Remote.ApiClient;
 import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,16 +59,22 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
     public void onBindViewHolder(final MyViewHolder holder, @SuppressLint("RecyclerView")final int position) {
 
         final boolean[] visible = {false};
+        Calendar calendar = Calendar.getInstance();
+     final    int day = calendar.get(Calendar.DAY_OF_WEEK);
         holder.weekDay.setText(week[position]);
-        holder.line.setImageResource(R.color.colorBlue);
+     //   final Typeface typeface = Typeface.createFromFile("E:\\Project Git\\Task5\\project\\app\\src\\main\\assets\\tahoma.ttf");
+        //  holder.line.setImageResource(R.);
         holder.weekDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!visible[0]){
                     visible[0] = true;
+             //       holder.weekDay.setTypeface(typeface);
+                    holder.weekDay.setTextColor(Color.RED);
                     holder.innerList.setVisibility(View.VISIBLE);
-                    holder.details.setText("-");
-                    holder.details.setTextSize(40);
+                    holder.details.setImageResource(R.drawable.caret_up_red);
+                    holder.indecator.setVisibility(View.VISIBLE);
+               //     holder.details.setTextSize(40);
 //                    holder.details.setPadding(30,-25,0,0);
 
                     holder.layoutManager = new LinearLayoutManager(context);
@@ -110,8 +120,10 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                 }else{
                     visible[0] = false;
                     holder.innerList.setVisibility(View.GONE);
-                    holder.details.setText("+");
-                    holder.details.setTextSize(40);
+                    holder.weekDay.setTextColor(Color.WHITE);
+                    holder.details.setImageResource(R.drawable.caret_down_white);
+                    holder.indecator.setVisibility(View.INVISIBLE);
+          //          holder.details.setTextSize(40);
 //                    holder.details.setPadding(20,5,0,0);
                 }
 
@@ -127,10 +139,10 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder  {
         TextView weekDay;
-        TextView details;
-        ImageView line;
+        ImageView details;
+        ImageView indecator;
         private RecyclerView innerList;
         public RecyclerView.LayoutManager layoutManager;
         public InnerRecyclerAdapter recyclerAdapter;
@@ -142,13 +154,13 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
             super(itemView);
             weekDay = itemView.findViewById(R.id.weekDays);
             details = itemView.findViewById(R.id.details);
-            line = itemView.findViewById(R.id.line);
+            indecator = itemView.findViewById(R.id.indecator);
             innerList = itemView.findViewById(R.id.innerList);
-
-
             rowLectureName = itemView.findViewById(R.id.rowLectureName);
             rowStartTime = itemView.findViewById(R.id.rowStartTime);
             rowType = itemView.findViewById(R.id.rowType);
+
+
         }
     }
 }

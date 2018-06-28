@@ -185,7 +185,7 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
 
                             }
                         });
-                        status.setTextColor(Color.rgb(0, 171, 250));
+                        status.setTextColor(Color.rgb(254, 53, 54));
                         status.setText("ON");
                         status.setEnabled(false);
                         pause.setEnabled(true);
@@ -211,7 +211,7 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
                             }
                         });
 //                        notifyDataSetChanged();
-                        status.setTextColor(Color.rgb(12, 82, 114));
+                        status.setTextColor(Color.rgb(146, 39, 39));
                         status.setText("OFF");
                         pause.setEnabled(false);
 
