@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class Lectures extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         outerLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(outerLayoutManager);
+
         recyclerView.setHasFixedSize(true);
         recyclerAdapter = new OuterRecyclerAdapter(this);
         recyclerView.setAdapter(recyclerAdapter);
