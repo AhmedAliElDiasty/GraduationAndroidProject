@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+// current attendance
     <Button
         android:id="@+id/attendance"
         android:layout_width="120dp"
@@ -44,7 +44,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
         app:layout_constraintVertical_bias="0.018" />
+//notification
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/attendance"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toEndOf="@+id/attendance"
+        app:layout_constraintTop_toBottomOf="@+id/name">
 
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:background="@drawable/home_back"
+            android:drawableTop="@drawable/notification"
+            android:paddingTop="17dp"
+            android:onClick="Notify"
+            android:text="@string/notification"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/notification_counts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:paddingStart="40dp"
+            android:paddingTop="5dp"
+            android:text="+9"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp" />
+    </RelativeLayout>
+//schedule
     <Button
         android:id="@+id/home_schedule"
         android:layout_width="120dp"
@@ -59,18 +98,17 @@
         android:text="@string/schedule"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button4"
+        app:layout_constraintBottom_toBottomOf="@+id/home_aboutus"
         app:layout_constraintStart_toStartOf="parent" />
-
+// about us
     <Button
         android:id="@+id/home_aboutus"
         android:layout_width="120dp"
         android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/attendance"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/home_back"
         android:drawableTop="@drawable/home_about"
         android:onClick="aboutUs"
@@ -78,19 +116,18 @@
         android:text="@string/aboutUs"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toEndOf="@+id/attendance"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
-
+        app:layout_constraintStart_toEndOf="@+id/home_schedule"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.0" />
+// log out
     <Button
         android:id="@+id/button4"
         android:layout_width="120dp"
         android:layout_height="100dp"
-        android:layout_alignStart="@+id/home_schedule"
-        android:layout_alignTop="@+id/home_aboutus"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="38dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/home_back"
@@ -103,8 +140,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toEndOf="@+id/home_schedule"
-        app:layout_constraintTop_toBottomOf="@+id/home_aboutus"
-        app:layout_constraintVertical_bias="0.219" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_aboutus" />
+
 </android.support.constraint.ConstraintLayout>

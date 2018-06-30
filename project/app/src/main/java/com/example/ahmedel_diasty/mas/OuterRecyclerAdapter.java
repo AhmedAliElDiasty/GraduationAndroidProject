@@ -3,6 +3,7 @@ package com.example.ahmedel_diasty.mas;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -157,8 +158,8 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
             rowLectureName = itemView.findViewById(R.id.rowLectureName);
             rowStartTime = itemView.findViewById(R.id.rowStartTime);
             rowType = itemView.findViewById(R.id.rowType);
-
-
+            Typeface typeface = Typeface.createFromAsset(context.getAssets(),"tahoma.ttf");
+            weekDay.setTypeface(typeface);
         }
     }
 }
