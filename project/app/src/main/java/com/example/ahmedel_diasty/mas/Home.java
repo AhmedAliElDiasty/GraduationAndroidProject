@@ -2,6 +2,7 @@ package com.example.ahmedel_diasty.mas;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -55,6 +56,11 @@ public class Home extends AppCompatActivity {
 
     public void schedule(View view) {
         Intent intent = new Intent(this,Lectures.class);
+        startActivity(intent);
+    }
+    //Notification Buton
+    public void Notify(View view){
+        Intent intent = new Intent(this,Notification.class);
         startActivity(intent);
     }
 

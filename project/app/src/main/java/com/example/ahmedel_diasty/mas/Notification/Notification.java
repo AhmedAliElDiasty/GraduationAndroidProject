@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.example.ahmedel_diasty.mas.R;
 
 public class Notification extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
