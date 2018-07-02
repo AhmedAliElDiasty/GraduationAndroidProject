@@ -17,11 +17,6 @@ public class Lectures extends AppCompatActivity {
     public RecyclerView.LayoutManager outerLayoutManager;
     TextView textView;
 
-    // Attemp to initialize Inner RecyclerView
-
-    private RecyclerView innerRecycler;
-    public RecyclerView.LayoutManager innerLayoutManager;
-    public InnerRecyclerAdapter innerRecyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

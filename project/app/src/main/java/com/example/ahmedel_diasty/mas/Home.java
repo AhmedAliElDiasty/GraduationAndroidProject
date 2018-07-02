@@ -2,15 +2,17 @@ package com.example.ahmedel_diasty.mas;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +20,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.ahmedel_diasty.mas.AboutUs.AboutUs;
+import com.example.ahmedel_diasty.mas.Notification.MyNotification;
 
 import java.util.Objects;
+
+
 
 public class Home extends AppCompatActivity {
     TextView textView;
@@ -29,7 +34,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        textView = (TextView)findViewById(R.id.name);
+        textView = findViewById(R.id.name);
         Typeface typeface = Typeface.createFromAsset(getAssets(),"MTCORSVA.TTF");
         textView.setTypeface(typeface);
         SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
@@ -58,9 +63,9 @@ public class Home extends AppCompatActivity {
         Intent intent = new Intent(this,Lectures.class);
         startActivity(intent);
     }
-    //Notification Buton
+    //MyNotification Buton
     public void Notify(View view){
-        Intent intent = new Intent(this,Notification.class);
+        Intent intent = new Intent(getApplicationContext(),MyNotification.class);
         startActivity(intent);
     }
 
@@ -78,6 +83,7 @@ public class Home extends AppCompatActivity {
         final Button manualAttendance = dialog.findViewById(R.id.IAP_ManualAttendance);
 
 
+
         // Manual Attendance Button
 
 
@@ -93,6 +99,25 @@ public class Home extends AppCompatActivity {
         }
         else
             manualAttendance.setAlpha(0);
+
+        // End Session Button
+
+        Button endSession = dialog.findViewById(R.id.IAP_EndSession);
+        endSession.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+
+                Time mtime = new Time();
+                mtime.setToNow();
+                int hour =mtime.hour;
+                int minutes = mtime.minute;
+
+
+                Log.i("++++++++++Miliseconds",""+hour+" : "+minutes);
+//                Log.i("++++++++++Miliseconds",""+hours);
+            }
+        });
 
 
         // Cancel Button
@@ -114,8 +139,6 @@ public class Home extends AppCompatActivity {
         //Display alert message when back button has been pressed
 
         backButtonHandler();
-
-        return;
 
     }
     public void backButtonHandler() {

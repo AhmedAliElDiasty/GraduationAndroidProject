@@ -8,17 +8,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#000000"
-        android:alpha="0.75">
+        android:background="#00FFFFFF">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:id="@+id/details"
             android:src="@drawable/caret_down_white"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="22dp"
             android:layout_marginLeft="18dp"/>
 
         <TextView
@@ -28,9 +27,8 @@
             android:layout_weight="1"
             android:text="@string/weekDays"
             android:textColor="#FFFFFF"
-            android:textSize="28sp"
             android:textStyle="italic"
-            android:paddingTop="5dp"
+            android:textSize="28sp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:layout_marginTop="5dp"/>
@@ -39,7 +37,7 @@
             android:layout_width="20dp"
             android:layout_height="16dp"
             android:layout_marginRight="18dp"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="22dp"
             android:visibility="invisible"
             android:id="@+id/indecator"
             android:src="@drawable/indecator" />

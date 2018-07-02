@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -59,23 +60,17 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
 
         final boolean[] visible = {false};
         Calendar calendar = Calendar.getInstance();
-     final    int day = calendar.get(Calendar.DAY_OF_WEEK);
+//        final int day = calendar.get(Calendar.DAY_OF_WEEK);
         holder.weekDay.setText(week[position]);
-     //   final Typeface typeface = Typeface.createFromFile("E:\\Project Git\\Task5\\project\\app\\src\\main\\assets\\tahoma.ttf");
-        //  holder.line.setImageResource(R.);
         holder.weekDay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!visible[0]){
                     visible[0] = true;
-             //       holder.weekDay.setTypeface(typeface);
                     holder.weekDay.setTextColor(Color.RED);
                     holder.innerList.setVisibility(View.VISIBLE);
                     holder.details.setImageResource(R.drawable.caret_up_red);
                     holder.indecator.setVisibility(View.VISIBLE);
-               //     holder.details.setTextSize(40);
-//                    holder.details.setPadding(30,-25,0,0);
-
                     holder.layoutManager = new LinearLayoutManager(context);
                     holder.innerList.setLayoutManager(holder.layoutManager);
                     holder.innerList.setHasFixedSize(true);
@@ -158,8 +153,8 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
             rowLectureName = itemView.findViewById(R.id.rowLectureName);
             rowStartTime = itemView.findViewById(R.id.rowStartTime);
             rowType = itemView.findViewById(R.id.rowType);
-            Typeface typeface = Typeface.createFromAsset(context.getAssets(),"tahoma.ttf");
-            weekDay.setTypeface(typeface);
+
+
         }
     }
 }

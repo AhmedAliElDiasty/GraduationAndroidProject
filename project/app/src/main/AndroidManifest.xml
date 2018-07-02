@@ -36,9 +36,10 @@
             android:name=".Lectures"
             android:screenOrientation="portrait" />
         <activity android:name=".Home" />
-        <activity android:name=".Notification.Notification" />
+        <activity android:name=".Notification.MyNotification" />
         <activity android:name=".AboutUs.AboutUs"></activity>
         <activity android:name=".Network.NetworkConnection"></activity>
+        <service android:name=".Notification.MyService" />
     </application>
 
 </manifest>

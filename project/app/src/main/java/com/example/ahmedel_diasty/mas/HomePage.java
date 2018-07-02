@@ -1,7 +1,6 @@
 package com.example.ahmedel_diasty.mas;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,20 +8,25 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.ahmedel_diasty.mas.Model.Schedule;
-import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
+import com.example.ahmedel_diasty.mas.Notification.MyThread;
 
 public class HomePage extends AppCompatActivity {
     final String DEFAULT = "default";
     String username ,name ,email ,level ,role;
     TextView textView;
+
+    Thread myThread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
+
+        myThread = new Thread(new MyThread(getApplicationContext()));
+        myThread.start();
+
         textView = (TextView)findViewById(R.id.proj_name1);
         Typeface typeface = Typeface.createFromAsset(getAssets(),"MTCORSVA.TTF");
         textView.setTypeface(typeface);
