@@ -18,10 +18,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#000"
+        android:background="#FFF"
         android:fitsSystemWindows="true"
-        app:itemIconTint="#FFFFFF"
-        app:itemTextColor="#FFFFFF"
+        app:itemIconTint="#008BFF"
+        app:itemTextColor="#008BFF"
+        app:itemTextAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
 

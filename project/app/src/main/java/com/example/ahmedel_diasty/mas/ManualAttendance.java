@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.ahmedel_diasty.mas.AboutUs.AboutUs;
 import com.example.ahmedel_diasty.mas.Model.Schedule;
 import com.example.ahmedel_diasty.mas.Model.StudentsInLocation;
 import com.example.ahmedel_diasty.mas.Model.StudentsInLocationData;
@@ -166,7 +167,8 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
             startActivity(intent);
         }
         else if(id == R.id.aboutus){
-            // will be added
+            Intent intent = new Intent(this, AboutUs.class);
+            startActivity(intent);
         }
         else {
             id = R.id.logout;
@@ -179,6 +181,8 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
             editor.apply();
             Intent intent = new Intent(this,HomePage.class);
             startActivity(intent);
+
+
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

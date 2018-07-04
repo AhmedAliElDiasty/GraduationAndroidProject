@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="85dp"
-    android:background="#00FFFFFF"
     >
 
     <RelativeLayout
@@ -21,7 +20,7 @@
             android:layout_toRightOf="@id/imagetime"
             android:text="@string/timeleft"
             android:textAppearance="?android:textAppearanceLarge"
-            android:textColor="#fe3536" />
+            android:textColor="#008BFF" />
 
         <ImageView
             android:id="@+id/imagetime"
@@ -32,7 +31,7 @@
             android:paddingLeft="20dp"
             android:paddingStart="20dp"
             android:src="@drawable/pause_time"
-            android:textColor="#00ABFA" />
+            android:textColor="#008BFF" />
 
         <Button
             android:id="@+id/resume"
@@ -55,7 +54,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="#333333"></View>
+            android:background="#008BFF"></View>
 
 
     </RelativeLayout>
@@ -86,7 +85,7 @@
             android:layout_toEndOf="@+id/image_std"
             android:layout_toRightOf="@+id/image_std"
             android:text="@string/student"
-            android:textColor="#fe3536"
+            android:textColor="#008BFF"
             android:textSize="16sp" />
 
         <Button
@@ -126,7 +125,7 @@
             android:layout_toLeftOf="@+id/switch1"
             android:layout_toStartOf="@+id/switch1"
             android:text="@string/active"
-            android:textColor="#922727"
+            android:textColor="#0C5272"
             android:textSize="18sp" />
 
         <View
@@ -136,7 +135,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:background="#333333"></View>
+            android:background="#008BFF"></View>
     </RelativeLayout>
 
 

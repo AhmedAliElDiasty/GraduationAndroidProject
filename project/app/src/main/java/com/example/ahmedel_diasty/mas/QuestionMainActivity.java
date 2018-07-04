@@ -1,5 +1,9 @@
 package com.example.ahmedel_diasty.mas;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -101,7 +105,7 @@ public class QuestionMainActivity extends AppCompatActivity {
                     }
 
                     Log.d("switch data", arrayList.toString());
-                    Toast.makeText(getApplicationContext(), "array add", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "array add", Toast.LENGTH_SHORT).show();
 
                     mSlideViewPager.setCurrentItem(mCurrentPage + 1);
                     getArrayElements();
@@ -126,6 +130,19 @@ public class QuestionMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 post_answer();
+                final Dialog dialog = new Dialog(QuestionMainActivity.this);
+                dialog.setContentView(R.layout.finish_dialog);
+                Button dismiss = dialog.findViewById(R.id.dismisButton);
+                dismiss.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(QuestionMainActivity.this,Home.class);
+                        startActivity(intent);
+
+                    }
+                });
+                dialog.show();
             }
         });
 
@@ -200,7 +217,7 @@ public class QuestionMainActivity extends AppCompatActivity {
 
                                 Log.e("Recived_success", questions.toString());
                                 Toast.makeText(getApplicationContext(),
-                                        "Get DataQuestion Succussefuly ", Toast.LENGTH_LONG).show();
+                                        "Get DataQuestion Succussefuly ", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -224,21 +241,18 @@ public class QuestionMainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         // do anything with response
-                        Toast.makeText(QuestionMainActivity.this,"Correct post " , Toast.LENGTH_LONG).show();
+                        Toast.makeText(QuestionMainActivity.this,"Correct post " , Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(ANError error) {
                         // handle error
-                        Toast.makeText(QuestionMainActivity.this," post " , Toast.LENGTH_LONG).show();
+                        Toast.makeText(QuestionMainActivity.this," post " , Toast.LENGTH_SHORT).show();
                         Log.d("DataQuestion",error.getMessage());
                         Log.d("DataQuestion msg",answers.toString());
-
-
                     }
                 });
 
     }
-
 
 }
