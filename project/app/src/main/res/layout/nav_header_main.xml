@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:background="@drawable/profilbackgroun">
+    android:background="@drawable/profilbackgroun"
+    android:backgroundTint="#008BFF">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -24,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Student A"
-        android:textColor="#fe3536 "
+        android:textColor="#008BFF"
         android:textSize="18dp"
         android:textStyle="bold"
         />
