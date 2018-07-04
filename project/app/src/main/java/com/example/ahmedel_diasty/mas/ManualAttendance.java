@@ -41,6 +41,7 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
     StudentsInLocation studentsInLocation;
     StudentsInLocation studentsInLocation2;
     ArrayList<StudentsInLocationData> students;
+    SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +173,7 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
         }
         else {
             id = R.id.logout;
-            SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
+
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("username","default");
             editor.putString("name","default");

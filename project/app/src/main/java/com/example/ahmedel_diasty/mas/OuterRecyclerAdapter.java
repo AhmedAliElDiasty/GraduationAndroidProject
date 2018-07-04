@@ -70,7 +70,7 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                     visible[0] = true;
                     holder.weekDay.setTextColor(Color.RED);
                     holder.innerList.setVisibility(View.VISIBLE);
-                    holder.details.setImageResource(R.drawable.caret_up_red);
+                    holder.details.setImageResource(R.drawable.caret_up);
                     holder.indecator.setVisibility(View.VISIBLE);
                     holder.layoutManager = new LinearLayoutManager(context);
                     holder.innerList.setLayoutManager(holder.layoutManager);
@@ -101,7 +101,7 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                     visible[0] = false;
                     holder.innerList.setVisibility(View.GONE);
                     holder.weekDay.setTextColor(Color.WHITE);
-                    holder.details.setImageResource(R.drawable.caret_down_white);
+                    holder.details.setImageResource(R.drawable.caret_down);
                     holder.indecator.setVisibility(View.INVISIBLE);
                 }
 

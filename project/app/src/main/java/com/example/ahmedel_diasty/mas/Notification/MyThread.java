@@ -77,8 +77,6 @@ public class MyThread implements Runnable{
             @Override
             public void onResponse(Call<Schedule> call, Response<Schedule> response) {
                 schedule = response.body();
-                dbConnection.deleteAll();
-
                 for (int i = 0;i<schedule.getDataSchedules().size();i++){
                     String startTimeString = schedule.getDataSchedules().get(i).getStartTime();
                     String[] separated = startTimeString.split(":");

@@ -25,7 +25,7 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="5dp"
                 android:paddingStart="10dp"
-                android:src="@drawable/student4"
+                android:src="@drawable/test"
                 tools:ignore="RtlSymmetry"
                 android:layout_weight="2"/>
 

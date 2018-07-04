@@ -20,7 +20,7 @@ public class MyNotification extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
-        recyclerView = findViewById(R.id.NotificationRecycler);
+        recyclerView = findViewById(R.id.notification);
         notificationRowAdapter = new NotificationRowAdapter(this);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
