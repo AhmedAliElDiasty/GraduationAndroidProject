@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,10 +25,32 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-        myThread = new Thread(new MyThread(getApplicationContext()));
-        myThread.start();
+//        myThread = new Thread(new MyThread(getApplicationContext()));
+        Thread t = new Thread() {
 
-        textView = (TextView)findViewById(R.id.proj_name1);
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(10000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                myThread = new Thread(new MyThread(getApplicationContext()));
+                                myThread.start();
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                    Log.i("--------------------","It has interrupt");
+                }
+            }
+        };
+
+        t.start();
+
+
+        textView = findViewById(R.id.proj_name1);
         Typeface typeface = Typeface.createFromAsset(getAssets(),"MTCORSVA.TTF");
         textView.setTypeface(typeface);
         SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
@@ -68,8 +91,6 @@ public class HomePage extends AppCompatActivity {
         //Display alert message when back button has been pressed
 
         backButtonHandler();
-
-        return;
 
     }
     public void backButtonHandler() {

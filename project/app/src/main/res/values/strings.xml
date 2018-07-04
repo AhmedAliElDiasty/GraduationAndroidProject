@@ -44,8 +44,9 @@
     <string name="version">Version 0.0.1</string>
     <string name="attendance_place">Hall 3</string>
     <string name="current_attendance">Current Attendance</string>
-
     <string name="new_message_notification_title_template">New message: %1$s</string>
+    <string name="description1">is about to begin, would you like attend?</string>
+    <string name="description2">has already begun, would you like to know where to go?</string>
 
     <!-- TODO: remove this placeholder text -->
     <string name="new_message_notification_placeholder_text_template">You said %1$s and lorem ipsum

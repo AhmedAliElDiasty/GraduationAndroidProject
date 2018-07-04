@@ -65,7 +65,7 @@ public class DBConnection {
             rowObject.setTime(time);
             arrayList.add(i,rowObject);
             i++;
-            Log.i("+++++++++++++++",""+rowObject);
+//            Log.i("+++++++++++++++",""+rowObject);
         }
         arrayRowObjects.setRowObjects(arrayList);
         return arrayRowObjects;
@@ -115,8 +115,6 @@ public class DBConnection {
         public DBMain(Context context) {
             super(context,DATABASE_NAME,null,DATABASE_VERSION);
             this.context = context;
-            Toast.makeText(context,"This is Constructor",Toast.LENGTH_SHORT).show();
-
         }
 
         @Override

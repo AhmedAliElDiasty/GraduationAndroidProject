@@ -21,12 +21,12 @@ public class MyService extends Service{
     int i = 0;
     boolean isRunning = true;
 
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -34,16 +34,7 @@ public class MyService extends Service{
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void run() {
-//                while(isRunning){
-//                    try {
-//                        Thread.sleep(2000);
-//                        createNotification(i++);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-                createNotification(i++);
-
+                createNotification(i);
             }
         });
         thread.start();
@@ -62,22 +53,16 @@ public class MyService extends Service{
         builder.setContentTitle("Warring !!");
         builder.setContentText("Watch Out ! Someone in your car ");
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
-//        builder.setColor(android.R.color.holo_orange_dark);
         builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-
         Notification.Action  action = new Notification.Action.Builder(android.R.drawable.ic_media_play,"Ok",pendingIntent).build();
         builder.addAction(action);
-//        builder.addAction(android.R.drawable.ic_media_pause,"Stop",pendingIntent);
-//        builder.setContentIntent(pendingIntent);
-
         Notification notification = builder.build();
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Objects.requireNonNull(notificationManager).notify(i,notification);
+        notificationManager.notify(i,notification);
 
 
     }
     @Override
     public void onDestroy(){
-
     }
 }
