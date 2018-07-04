@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ahmedel_diasty.mas.R;
 import com.example.ahmedel_diasty.mas.Sqlite.DBConnection;
@@ -17,6 +18,9 @@ public class NotificationRowAdapter extends RecyclerView.Adapter<NotificationRow
     NotificationRowAdapter(Context context) {
         this.context = context;
         dbConnection = new DBConnection(context);
+        if (dbConnection.retrieveData().getRowObjects().size() == 0){
+            Toast.makeText(context, "There are no notification to show", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

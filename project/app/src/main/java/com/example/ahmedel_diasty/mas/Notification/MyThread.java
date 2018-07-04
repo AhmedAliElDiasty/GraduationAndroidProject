@@ -37,6 +37,7 @@ public class MyThread implements Runnable{
 
 
 
+
         mtime.setToNow();
         int weekDay = mtime.weekDay;
         switch (weekDay){
@@ -76,6 +77,7 @@ public class MyThread implements Runnable{
             @Override
             public void onResponse(Call<Schedule> call, Response<Schedule> response) {
                 schedule = response.body();
+                dbConnection.deleteAll();
 
                 for (int i = 0;i<schedule.getDataSchedules().size();i++){
                     String startTimeString = schedule.getDataSchedules().get(i).getStartTime();
@@ -103,6 +105,11 @@ public class MyThread implements Runnable{
                                     context.getString(R.string.description2),
                                     startTimeString);
                         }
+                        // Delete Data in the end of day
+
+                        if (hour == hourSystem && minute == minuteSystem +15){
+                            dbConnection.deleteAll();
+                        }
 
                     }
                 }
@@ -116,13 +123,5 @@ public class MyThread implements Runnable{
         });
         hourSystem =mtime.hour;
         minuteSystem = mtime.minute;
-
-        // Delete Data in the end of day
-
-        if (hourSystem == 0 && minuteSystem == 0){
-            dbConnection.deleteAll();
-        }
-
-
     }
 }

@@ -31,11 +31,12 @@ import retrofit2.Response;
 
 public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdapter.MyViewHolder> {
 
-    private ApiInterface apiInterface;
     private LayoutInflater layoutInflater;
     private Context context;
     private String[] week = {"Saturday", "Sunday", "Monday", "Tuesday",
             "Wednesday","Thursday"};
+
+    public RecyclerView.LayoutManager innerLayoutManager;
 
     Schedule schedule;
     Schedule schedule2;
@@ -57,9 +58,10 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
     @Override
     public void onBindViewHolder(final MyViewHolder holder, @SuppressLint("RecyclerView")final int position) {
 
+
+        holder.setIsRecyclable(false
+        );
         final boolean[] visible = {false};
-        Calendar calendar = Calendar.getInstance();
-//        final int day = calendar.get(Calendar.DAY_OF_WEEK);
         holder.weekDay.setText(week[position]);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +88,9 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                         }
                     }
                     schedule2.setDataSchedules(subjects);
+
+                    innerLayoutManager = new LinearLayoutManager(holder.itemView.getContext());
+                    holder.innerList.setLayoutManager(innerLayoutManager);
                     holder.recyclerAdapter = new InnerRecyclerAdapter(context,schedule2);
                     holder.innerList.setAdapter(holder.recyclerAdapter);
                     Log.i("++++++++++++Subject",""+subjects);
@@ -98,8 +103,6 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                     holder.weekDay.setTextColor(Color.WHITE);
                     holder.details.setImageResource(R.drawable.caret_down_white);
                     holder.indecator.setVisibility(View.INVISIBLE);
-          //          holder.details.setTextSize(40);
-//                    holder.details.setPadding(20,5,0,0);
                 }
 
 

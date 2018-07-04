@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ahmedel_diasty.mas.R;
@@ -24,8 +25,8 @@ public class MyNotification extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+
         try {
-            Toast.makeText(this, "There are data", Toast.LENGTH_SHORT).show();
             recyclerView.setAdapter(notificationRowAdapter);
         }
         catch (Exception ex){

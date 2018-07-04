@@ -1,5 +1,6 @@
 package com.example.ahmedel_diasty.mas;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,12 +21,13 @@ public class HomePage extends AppCompatActivity {
 
     Thread myThread;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-//        myThread = new Thread(new MyThread(getApplicationContext()));
+
         Thread t = new Thread() {
 
             @Override
@@ -34,10 +36,12 @@ public class HomePage extends AppCompatActivity {
                     while (!isInterrupted()) {
                         Thread.sleep(10000);
                         runOnUiThread(new Runnable() {
+                            @SuppressLint("SetTextI18n")
                             @Override
                             public void run() {
                                 myThread = new Thread(new MyThread(getApplicationContext()));
                                 myThread.start();
+
                             }
                         });
                     }

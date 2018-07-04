@@ -37,15 +37,15 @@ public class Lectures extends AppCompatActivity {
         setContentView(R.layout.activity_lectures);
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
         outerLayoutManager = new LinearLayoutManager(this);
-
-//        recyclerAdapter = new OuterRecyclerAdapter(this);
+        recyclerView.setLayoutManager(outerLayoutManager);
+        recyclerView.setHasFixedSize(true);
+//        recyclerAdapter = new OuterRecyclerAdapter(this,schedule);
 //        recyclerView.setAdapter(recyclerAdapter);
 
 
         // Attempt to receive subjects' schedule
 
-        recyclerView.setLayoutManager(outerLayoutManager);
-        recyclerView.setHasFixedSize(true);
+
 
         schedule = new Schedule();
 
@@ -57,9 +57,9 @@ public class Lectures extends AppCompatActivity {
                 schedule = response.body();
 
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-
-                recyclerAdapter = new OuterRecyclerAdapter(getApplicationContext(),schedule);
+                recyclerAdapter = new OuterRecyclerAdapter(Lectures.this,schedule);
                 recyclerView.setAdapter(recyclerAdapter);
+
 
             }
 
@@ -67,7 +67,7 @@ public class Lectures extends AppCompatActivity {
             public void onFailure(Call<Schedule> call, Throwable t) {
                 Intent intent = new Intent(getApplicationContext(),Home.class);
                 startActivity(intent);
-//                Toast.makeText(getApplicationContext(), "Not Response", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Check the internet connection", Toast.LENGTH_SHORT).show();
             }
         });
 
