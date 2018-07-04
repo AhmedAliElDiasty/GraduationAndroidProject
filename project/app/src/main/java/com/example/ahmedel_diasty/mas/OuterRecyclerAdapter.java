@@ -41,9 +41,10 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
     Schedule schedule2;
     ArrayList<DataSchedule> subjects;
 
-    public OuterRecyclerAdapter(Context context) {
+    public OuterRecyclerAdapter(Context context,Schedule schedule) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
+        this.schedule = schedule;
         subjects = new ArrayList<>();
     }
 
@@ -60,7 +61,7 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
         Calendar calendar = Calendar.getInstance();
 //        final int day = calendar.get(Calendar.DAY_OF_WEEK);
         holder.weekDay.setText(week[position]);
-        holder.weekDay.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!visible[0]){
@@ -72,41 +73,23 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                     holder.layoutManager = new LinearLayoutManager(context);
                     holder.innerList.setLayoutManager(holder.layoutManager);
                     holder.innerList.setHasFixedSize(true);
-                    schedule = new Schedule();
                     schedule2 = new Schedule();
 
 
-                    apiInterface = ApiClient.getClient().create(ApiInterface.class);
-                    Call<Schedule> scModelCall = apiInterface.getScheduleCall();
-                    scModelCall.enqueue(new Callback<Schedule>() {
-                        @Override
-                        public void onResponse(Call<Schedule> call, Response<Schedule> response) {
-                            schedule = response.body();
-                            subjects.clear();
+                    subjects.clear();
 
-                            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-                            for (int i = 0; i < schedule.getDataSchedules().size(); i++) {
-                                if (schedule.getDataSchedules().get(i).getDay().equals(week[position])){
-                                    subjects.add(schedule.getDataSchedules().get(i));
-                                    Log.i("type",schedule.getDataSchedules().get(i).getType());
-                                }
-
-
-
-                            }
-                            schedule2.setDataSchedules(subjects);
-                            holder.recyclerAdapter = new InnerRecyclerAdapter(context,schedule2);
-                            holder.innerList.setAdapter(holder.recyclerAdapter);
-                            Log.i("++++++++++++",""+subjects);
-
+                    Toast.makeText(context, "Fetch", Toast.LENGTH_SHORT).show();
+                    for (int i = 0; i < schedule.getDataSchedules().size(); i++) {
+                        if (schedule.getDataSchedules().get(i).getDay().equals(week[position])){
+                            subjects.add(schedule.getDataSchedules().get(i));
+                            Log.i("type",schedule.getDataSchedules().get(i).getType());
                         }
+                    }
+                    schedule2.setDataSchedules(subjects);
+                    holder.recyclerAdapter = new InnerRecyclerAdapter(context,schedule2);
+                    holder.innerList.setAdapter(holder.recyclerAdapter);
+                    Log.i("++++++++++++Subject",""+subjects);
 
-                        @Override
-                        public void onFailure(Call<Schedule> call, Throwable t) {
-
-                            Toast.makeText(context, "Not Response", Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
 
                 }else{
