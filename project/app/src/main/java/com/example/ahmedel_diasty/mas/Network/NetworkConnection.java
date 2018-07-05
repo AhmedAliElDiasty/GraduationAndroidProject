@@ -1,6 +1,7 @@
 package com.example.ahmedel_diasty.mas.Network;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
@@ -10,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.View;
 
 public class NetworkConnection extends AppCompatActivity {
 
@@ -21,9 +23,16 @@ public class NetworkConnection extends AppCompatActivity {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         Log.d("wifiInfo", wifiInfo.toString());
         Log.d("SSID",wifiInfo.getSSID());
-        getNetworkClass(getApplicationContext());
-        getWifiName(getApplicationContext());
+        Log.d("nameM",getWifiName(this));
+        String name = getWifiName(this);
+        String wn  = name.substring(1,name.length()-1);
+        String nameconnection = "hany";
 
+        if(getNetworkClass(this)=="WIFI"){
+            if ( wn.equals(nameconnection)){
+                // condition
+            }
+        }
     }
 
     @NonNull
