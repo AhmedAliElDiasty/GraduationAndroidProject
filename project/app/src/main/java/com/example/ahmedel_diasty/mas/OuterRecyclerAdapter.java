@@ -3,8 +3,6 @@ package com.example.ahmedel_diasty.mas;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,19 +31,21 @@ import retrofit2.Response;
 
 public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdapter.MyViewHolder> {
 
-    private ApiInterface apiInterface;
     private LayoutInflater layoutInflater;
     private Context context;
     private String[] week = {"Saturday", "Sunday", "Monday", "Tuesday",
             "Wednesday","Thursday"};
 
+    public RecyclerView.LayoutManager innerLayoutManager;
+
     Schedule schedule;
     Schedule schedule2;
     ArrayList<DataSchedule> subjects;
 
-    public OuterRecyclerAdapter(Context context) {
+    public OuterRecyclerAdapter(Context context,Schedule schedule) {
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
+        this.schedule = schedule;
         subjects = new ArrayList<>();
     }
 
@@ -58,67 +58,51 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
     @Override
     public void onBindViewHolder(final MyViewHolder holder, @SuppressLint("RecyclerView")final int position) {
 
+
+        holder.setIsRecyclable(false
+        );
         final boolean[] visible = {false};
-        Calendar calendar = Calendar.getInstance();
-//        final int day = calendar.get(Calendar.DAY_OF_WEEK);
         holder.weekDay.setText(week[position]);
-        holder.weekDay.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!visible[0]){
                     visible[0] = true;
                     holder.weekDay.setTextColor(Color.RED);
                     holder.innerList.setVisibility(View.VISIBLE);
-                    holder.details.setImageResource(R.drawable.caret_up_red);
+                    holder.details.setImageResource(R.drawable.caret_up);
                     holder.indecator.setVisibility(View.VISIBLE);
                     holder.layoutManager = new LinearLayoutManager(context);
                     holder.innerList.setLayoutManager(holder.layoutManager);
                     holder.innerList.setHasFixedSize(true);
-                    schedule = new Schedule();
                     schedule2 = new Schedule();
 
 
-                    apiInterface = ApiClient.getClient().create(ApiInterface.class);
-                    Call<Schedule> scModelCall = apiInterface.getScheduleCall();
-                    scModelCall.enqueue(new Callback<Schedule>() {
-                        @Override
-                        public void onResponse(Call<Schedule> call, Response<Schedule> response) {
-                            schedule = response.body();
-                            subjects.clear();
+                    subjects.clear();
 
-                            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-                            for (int i = 0; i < schedule.getDataSchedules().size(); i++) {
-                                if (schedule.getDataSchedules().get(i).getDay().equals(week[position])){
-                                    subjects.add(schedule.getDataSchedules().get(i));
-                                    Log.i("type",schedule.getDataSchedules().get(i).getType());
-                                }
-
-
-
-                            }
-                            schedule2.setDataSchedules(subjects);
-                            holder.recyclerAdapter = new InnerRecyclerAdapter(context,schedule2);
-                            holder.innerList.setAdapter(holder.recyclerAdapter);
-                            Log.i("++++++++++++",""+subjects);
-
+                    Toast.makeText(context, "Fetch", Toast.LENGTH_SHORT).show();
+                    for (int i = 0; i < schedule.getDataSchedules().size(); i++) {
+                        if (schedule.getDataSchedules().get(i).getDay().equals(week[position])){
+                            subjects.add(schedule.getDataSchedules().get(i));
+                            Log.i("type",schedule.getDataSchedules().get(i).getType());
                         }
+                    }
+                    schedule2.setDataSchedules(subjects);
 
-                        @Override
-                        public void onFailure(Call<Schedule> call, Throwable t) {
+                    innerLayoutManager = new LinearLayoutManager(holder.itemView.getContext());
+                    holder.innerList.setLayoutManager(innerLayoutManager);
+                    holder.recyclerAdapter = new InnerRecyclerAdapter(context,schedule2);
+                    holder.innerList.setAdapter(holder.recyclerAdapter);
+                    Log.i("++++++++++++Subject",""+subjects);
 
-                            Toast.makeText(context, "Not Response", Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
 
                 }else{
                     visible[0] = false;
                     holder.innerList.setVisibility(View.GONE);
                     holder.weekDay.setTextColor(Color.WHITE);
-                    holder.details.setImageResource(R.drawable.caret_down_white);
+                    holder.details.setImageResource(R.drawable.caret_down);
                     holder.indecator.setVisibility(View.INVISIBLE);
-          //          holder.details.setTextSize(40);
-//                    holder.details.setPadding(20,5,0,0);
                 }
 
 

@@ -6,17 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ahmedel_diasty.mas.R;
 import com.example.ahmedel_diasty.mas.Sqlite.DBConnection;
 
 public class NotificationRowAdapter extends RecyclerView.Adapter<NotificationRowAdapter.RowViewHolder> {
-    private Context context;
-    DBConnection dbConnection;
+    private DBConnection dbConnection;
 
     NotificationRowAdapter(Context context) {
-        this.context = context;
         dbConnection = new DBConnection(context);
+        if (dbConnection.retrieveData().getRowObjects().size() == 0){
+            Toast.makeText(context, "There are no notification to show", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -40,10 +42,10 @@ public class NotificationRowAdapter extends RecyclerView.Adapter<NotificationRow
         return dbConnection.retrieveData().getRowObjects().size();
     }
 
-    public class RowViewHolder extends RecyclerView.ViewHolder {
+    class RowViewHolder extends RecyclerView.ViewHolder {
         private TextView lectureName, description, time;
 
-        public RowViewHolder(View itemView) {
+        RowViewHolder(View itemView) {
 
             super(itemView);
             lectureName = itemView.findViewById(R.id.CL_name);

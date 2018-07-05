@@ -1,5 +1,6 @@
 package com.example.ahmedel_diasty.mas;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.ahmedel_diasty.mas.AboutUs.AboutUs;
 import com.example.ahmedel_diasty.mas.Notification.MyNotification;
+import com.example.ahmedel_diasty.mas.Sqlite.DBConnection;
 
 import java.util.Objects;
 
@@ -30,6 +32,9 @@ public class Home extends AppCompatActivity {
     TextView textView;
     String role;
     String level;
+    DBConnection dbConnection;
+    TextView counter;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,10 @@ public class Home extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
         role = sharedPreferences.getString("role","default");
         level = sharedPreferences.getString("level","default");
+
+        dbConnection = new DBConnection(this);
+        counter = findViewById(R.id.notification_counts);
+        counter.setText("+"+dbConnection.retrieveData().getRowObjects().size());
         }
 
     public void logout(View view) {
@@ -107,17 +116,28 @@ public class Home extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-
-                Time mtime = new Time();
-                mtime.setToNow();
-                int hour =mtime.hour;
-                int minutes = mtime.minute;
-
-
-                Log.i("++++++++++Miliseconds",""+hour+" : "+minutes);
-//                Log.i("++++++++++Miliseconds",""+hours);
+            Time mtime = new Time();
+            mtime.setToNow();
+            int hour =mtime.hour;
+            int minutes = mtime.minute;
+            Log.i("++++++++++Miliseconds",""+hour+" : "+minutes);
             }
         });
+
+
+        // Lecture name
+        TextView subjectName = dialog.findViewById(R.id.IAP_SubjectName);
+
+        // Started time
+        TextView startTime = dialog.findViewById(R.id.IAP_StartedTime);
+
+        // Remaining time
+        TextView remaining = dialog.findViewById(R.id.IAP_TimeLeft);
+
+
+        // Students' number
+        TextView students = dialog.findViewById(R.id.IAP_Students);
+
 
 
         // Cancel Button

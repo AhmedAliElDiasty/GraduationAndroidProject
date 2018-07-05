@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/test">
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/proj_name"
@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:text="@string/app_name"
-        android:textColor="#FFFFFF"
+        android:textColor="#008BFF"
         android:textSize="45sp"/>
 
     <EditText
@@ -27,9 +27,9 @@
         android:textSize="16sp"
         android:inputType="textPersonName"
         android:hint="@string/username"
-        android:textColorHint="#DDDDDD"
-        android:textColor="#FFFFFF"
-        android:background="@drawable/home_back"
+        android:textColorHint="#008BFF"
+        android:textColor="#008BFF"
+        android:background="@drawable/text_fields"
         android:drawableLeft="@drawable/username"
         android:drawablePadding="25dp"
         android:padding="18dp"/>
@@ -46,9 +46,9 @@
         android:inputType="textPassword"
         android:textSize="16sp"
         android:hint="@string/password"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#DDDDDD"
-        android:background="@drawable/home_back"
+        android:textColor="#008BFF"
+        android:textColorHint="#008BFF"
+        android:background="@drawable/text_fields"
         android:drawableLeft="@drawable/pass"
         android:drawablePadding="25dp"
         android:padding="18dp"/>
@@ -61,8 +61,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
         android:text="@string/login"
-        android:background="#000"
-        android:foreground="@drawable/rounded_button2"
+        android:background="@drawable/rounded_button2"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:drawableRight="@drawable/home_log"

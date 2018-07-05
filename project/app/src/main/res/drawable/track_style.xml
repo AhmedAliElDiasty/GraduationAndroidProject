@@ -6,8 +6,8 @@
             android:dither="true"
             android:useLevel="false">
             <gradient
-                android:startColor="#fe3536"
-                android:endColor="#fe3536"
+                android:startColor="#008BFF"
+                android:endColor="#008BFF"
                 android:angle="270"/>
             <corners
                 android:radius="15dp"/>
@@ -26,8 +26,8 @@
             android:dither="true"
             android:useLevel="false">
             <gradient
-                android:startColor="#383838"
-                android:endColor="#383838"
+                android:startColor="#CCCCCC"
+                android:endColor="#CCCCCC"
                 android:angle="270"/>
             <corners
                 android:radius="15dp"/>

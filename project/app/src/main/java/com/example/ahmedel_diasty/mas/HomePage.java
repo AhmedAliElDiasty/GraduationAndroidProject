@@ -1,5 +1,6 @@
 package com.example.ahmedel_diasty.mas;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,15 +21,40 @@ public class HomePage extends AppCompatActivity {
 
     Thread myThread;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-        myThread = new Thread(new MyThread(getApplicationContext()));
-        myThread.start();
 
-        textView = (TextView)findViewById(R.id.proj_name1);
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(10000);
+                        runOnUiThread(new Runnable() {
+                            @SuppressLint("SetTextI18n")
+                            @Override
+                            public void run() {
+                                myThread = new Thread(new MyThread(getApplicationContext()));
+                                myThread.start();
+
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                    Log.i("--------------------","It has interrupt");
+                }
+            }
+        };
+
+        t.start();
+
+
+        textView = findViewById(R.id.proj_name1);
         Typeface typeface = Typeface.createFromAsset(getAssets(),"MTCORSVA.TTF");
         textView.setTypeface(typeface);
         SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
@@ -68,8 +95,6 @@ public class HomePage extends AppCompatActivity {
         //Display alert message when back button has been pressed
 
         backButtonHandler();
-
-        return;
 
     }
     public void backButtonHandler() {

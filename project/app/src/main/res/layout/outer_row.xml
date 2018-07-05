@@ -8,17 +8,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:orientation="horizontal"
-        android:background="#00FFFFFF">
+        >
 
         <ImageView
-            android:layout_width="20dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/details"
-            android:src="@drawable/caret_down_white"
-            android:layout_marginTop="22dp"
-            android:layout_marginLeft="18dp"/>
+            android:src="@drawable/caret_down"
+            android:layout_marginTop="27dp"
+            android:layout_marginLeft="18dp"
+            android:tint="#008BFF"/>
 
         <TextView
             android:id="@+id/weekDays"
@@ -26,9 +27,10 @@
             android:layout_height="70dp"
             android:layout_weight="1"
             android:text="@string/weekDays"
-            android:textColor="#FFFFFF"
-            android:textStyle="italic"
+            android:textColor="#008BFF"
             android:textSize="28sp"
+            android:textStyle="italic"
+            android:paddingTop="5dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:layout_marginTop="5dp"/>
@@ -37,10 +39,11 @@
             android:layout_width="20dp"
             android:layout_height="16dp"
             android:layout_marginRight="18dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="27dp"
             android:visibility="invisible"
             android:id="@+id/indecator"
-            android:src="@drawable/indecator" />
+            android:src="@drawable/indecator"
+            android:tint="#008BFF"/>
 
 
     </LinearLayout>
@@ -59,8 +62,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#DDDDDD"
+        android:layout_height="2dp"
+        android:background="#008BFF"
         ></View>
 
 
