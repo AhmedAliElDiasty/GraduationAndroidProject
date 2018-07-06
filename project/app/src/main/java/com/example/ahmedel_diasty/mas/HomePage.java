@@ -61,7 +61,7 @@ public class HomePage extends AppCompatActivity {
          username = sharedPreferences.getString("username",DEFAULT);
          name = sharedPreferences.getString("name",DEFAULT);
          email = sharedPreferences.getString("email",DEFAULT);
-         level = sharedPreferences.getString("level",DEFAULT);
+         level = sharedPreferences.getString("level","0");
          role = sharedPreferences.getString("role",DEFAULT);
          if(!username.equals(DEFAULT)){
              Intent intent = new Intent(this,Home.class);

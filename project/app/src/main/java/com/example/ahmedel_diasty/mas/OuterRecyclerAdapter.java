@@ -68,7 +68,6 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
             public void onClick(View v) {
                 if(!visible[0]){
                     visible[0] = true;
-                    holder.weekDay.setTextColor(Color.RED);
                     holder.innerList.setVisibility(View.VISIBLE);
                     holder.details.setImageResource(R.drawable.caret_up);
                     holder.indecator.setVisibility(View.VISIBLE);
@@ -100,7 +99,6 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                 }else{
                     visible[0] = false;
                     holder.innerList.setVisibility(View.GONE);
-                    holder.weekDay.setTextColor(Color.WHITE);
                     holder.details.setImageResource(R.drawable.caret_down);
                     holder.indecator.setVisibility(View.INVISIBLE);
                 }

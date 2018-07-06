@@ -2,6 +2,7 @@ package com.example.ahmedel_diasty.mas;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,7 +29,7 @@ public class Lectures extends AppCompatActivity {
     TextView textView;
     private ApiInterface apiInterface;
     private Schedule schedule;
-
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -39,11 +40,8 @@ public class Lectures extends AppCompatActivity {
         outerLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(outerLayoutManager);
         recyclerView.setHasFixedSize(true);
-//        recyclerAdapter = new OuterRecyclerAdapter(this,schedule);
-//        recyclerView.setAdapter(recyclerAdapter);
 
-
-        // Attempt to receive subjects' schedule
+        sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
 
 
 

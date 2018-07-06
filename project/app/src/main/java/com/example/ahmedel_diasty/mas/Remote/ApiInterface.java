@@ -40,7 +40,7 @@ public interface ApiInterface {
                                             @Field("status")String status);
 
 //    @FormUrlEncoded
-//    @GET("api/students_in_Location/{id}")
-//    Call<StudentsInLocation>getStudentsCall(@Path("id")int ID);
+    @GET("api/students_in_Location/groupNumber/{id}")
+    Call<StudentsInLocation>getStudentsNumber(@Path("id")int id);
 
 }

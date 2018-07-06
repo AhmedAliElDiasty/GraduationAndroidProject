@@ -37,7 +37,6 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
     private StudentRowAdapter adapter;
     private MaterialSearchView searchView;
 
-    private ApiInterface apiInterface;
     StudentsInLocation studentsInLocation;
     StudentsInLocation studentsInLocation2;
     ArrayList<StudentsInLocationData> students;
@@ -78,7 +77,7 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
         });
 
         recyclerView = findViewById(R.id.recycler_view);
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
         Call<StudentsInLocation>locationCall = apiInterface.getStudentsCall();
         locationCall.enqueue(new Callback<StudentsInLocation>() {
             @Override

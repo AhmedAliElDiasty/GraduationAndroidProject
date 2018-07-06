@@ -117,7 +117,7 @@ public class LoginForm extends AppCompatActivity {
                         editor.putString("username",model.getStudentLogin().get(0).getUsername());
                         editor.putString("name",model.getStudentLogin().get(0).getName());
                         editor.putString("email",model.getStudentLogin().get(0).getEmail());
-                        editor.putString("level","default");
+                        editor.putString("level","0");
                         editor.putString("role",model.getStudentLogin().get(0).getRole());
                         editor.apply();
                         Intent intent = new Intent(getApplicationContext(),Home.class);

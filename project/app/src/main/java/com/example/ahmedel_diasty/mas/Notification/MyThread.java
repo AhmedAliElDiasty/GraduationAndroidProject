@@ -2,6 +2,7 @@ package com.example.ahmedel_diasty.mas.Notification;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.text.format.Time;
@@ -28,11 +29,11 @@ public class MyThread implements Runnable{
     private int i = 0;
 
 
+
     public MyThread(Context context) {
         this.context = context;
         dbConnection = new DBConnection(context);
-       schedule = new Schedule();
-
+        schedule = new Schedule();
         mtime = new Time();
 
 
@@ -86,6 +87,14 @@ public class MyThread implements Runnable{
                     int minute = Integer.parseInt(minuteString);
                     if (day.equals(schedule.getDataSchedules().get(i).getDay())){
                         if (hour == hourSystem && minute == minuteSystem){
+                            SharedPreferences preferences = context.getSharedPreferences(
+                                    "current attendance",Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("Activity name",schedule.getDataSchedules().get(i).getSubjectName());
+                            editor.putString("Start time",schedule.getDataSchedules().get(i).getStartTime());
+                            editor.putString("end time",schedule.getDataSchedules().get(i).getEndTime());
+                            editor.apply();
+
                             Intent intent = new Intent(context,MyService.class);
                             context.startService(intent);
                             dbConnection.dataInsert(

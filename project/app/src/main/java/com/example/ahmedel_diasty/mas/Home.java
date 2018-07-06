@@ -9,8 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.Time;
@@ -21,11 +20,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.ahmedel_diasty.mas.AboutUs.AboutUs;
+import com.example.ahmedel_diasty.mas.Model.StudentsInLocation;
 import com.example.ahmedel_diasty.mas.Notification.MyNotification;
+import com.example.ahmedel_diasty.mas.Remote.ApiClient;
+import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
 import com.example.ahmedel_diasty.mas.Sqlite.DBConnection;
 
 import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Home extends AppCompatActivity {
@@ -34,6 +39,15 @@ public class Home extends AppCompatActivity {
     String level;
     DBConnection dbConnection;
     TextView counter;
+    SharedPreferences sharedPreferences;
+    SharedPreferences preferences;
+    String startTimeString;
+    String endTimeString;
+    int minuteRemaining;
+    int hourRemaning;
+    StudentsInLocation students1;
+    int state = 0;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,21 +57,27 @@ public class Home extends AppCompatActivity {
         Typeface typeface = Typeface.createFromAsset(getAssets(),"MTCORSVA.TTF");
         textView.setTypeface(typeface);
         SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
-        role = sharedPreferences.getString("role","default");
-        level = sharedPreferences.getString("level","default");
-
+        role = sharedPreferences.getString("role","0");
+        level = sharedPreferences.getString("level","0");
         dbConnection = new DBConnection(this);
         counter = findViewById(R.id.notification_counts);
         counter.setText("+"+dbConnection.retrieveData().getRowObjects().size());
+        preferences = getSharedPreferences("current attendance",MODE_PRIVATE);
+
+        Button schedule = findViewById(R.id.home_schedule);
+        if (Integer.parseInt(role) ==1){
+            schedule.setAlpha((float) 0.2);
+            schedule.setEnabled(false);
+        }
         }
 
     public void logout(View view) {
-        SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("username","default");
         editor.putString("name","default");
         editor.putString("role","default");
-        editor.putString("level","default");
+        editor.putString("level","0");
         editor.apply();
         Intent intent = new Intent(this,HomePage.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -85,6 +105,7 @@ public class Home extends AppCompatActivity {
     }
 
 
+    @SuppressLint("SetTextI18n")
     public void currentAttendance(View view) {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.instructor_attendance_page);
@@ -92,51 +113,146 @@ public class Home extends AppCompatActivity {
         final Button manualAttendance = dialog.findViewById(R.id.IAP_ManualAttendance);
 
 
-
         // Manual Attendance Button
 
 
-        if (role.equals("1")){
+        if (role.equals("1")) {
             manualAttendance.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     manualAttendance.setAlpha(1);
-                    Intent intent = new Intent(getApplicationContext(),ManualAttendance.class);
+                    Intent intent = new Intent(getApplicationContext(), ManualAttendance.class);
                     startActivity(intent);
                 }
             });
-        }
-        else
+        } else
             manualAttendance.setAlpha(0);
 
         // End Session Button
 
-        Button endSession = dialog.findViewById(R.id.IAP_EndSession);
-        endSession.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View v) {
-            Time mtime = new Time();
-            mtime.setToNow();
-            int hour =mtime.hour;
-            int minutes = mtime.minute;
-            Log.i("++++++++++Miliseconds",""+hour+" : "+minutes);
-            }
-        });
+        final Button endSession = dialog.findViewById(R.id.IAP_EndSession);
+        if (state == 0){
+            endSession.setEnabled(false);
+            endSession.setAlpha((float) 0.2);
+        }
+        else{
+            ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+            Call<StudentsInLocation> locationCall =
+                    apiInterface.setStudentsCall(Integer.parseInt(
+                            sharedPreferences.getString("id","0")),"0");
+            locationCall.enqueue(new Callback<StudentsInLocation>() {
+                @Override
+                public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
+                    Log.i("++++++++++","Switch off");
+                    state = 0;
+                }
+
+                @Override
+                public void onFailure(Call<StudentsInLocation> call, Throwable t) {
+                    Log.i("++++++++++","failure");
+
+                }
+            });
+        }
 
 
         // Lecture name
-        TextView subjectName = dialog.findViewById(R.id.IAP_SubjectName);
+        final TextView subjectName = dialog.findViewById(R.id.IAP_SubjectName);
+        subjectName.setText(preferences.getString("Activity name", "No Activity Now"));
 
         // Started time
-        TextView startTime = dialog.findViewById(R.id.IAP_StartedTime);
+        startTimeString = preferences.getString("Start time", "00:00");
+        final TextView startTime = dialog.findViewById(R.id.IAP_StartedTime);
+        startTime.setText(startTimeString);
 
-        // Remaining time
-        TextView remaining = dialog.findViewById(R.id.IAP_TimeLeft);
+
+        final TextView remaining = dialog.findViewById(R.id.IAP_TimeLeft);
+
+        // Calculate remaining time
+
+
+        Log.i("Start time String",startTimeString);
+
+        Time mtime = new Time();
+        mtime.setToNow();
+        int currentHour = mtime.hour;
+        int currentMinute = mtime.minute;
+
+        endTimeString = preferences.getString("end time", "default");
+        String[] separatedEnd = startTimeString.split(":");
+        String hourStringEnd = separatedEnd[0].trim();
+        String minuteStringEnd = separatedEnd[1].trim();
+        int hourEnd = Integer.parseInt(hourStringEnd);
+        int minuteEnd = Integer.parseInt(minuteStringEnd);
+
+
+        hourRemaning = hourEnd - currentHour;
+        minuteRemaining = minuteEnd - currentMinute;
+        int timer = 1000 * 60 * (minuteRemaining + 60 * hourRemaning);
+
+        Log.i("-----------Local time",hourEnd+":"+minuteEnd);
+        if (hourEnd == 0){
+            remaining.setText(hourEnd + ":" + minuteEnd);
+        }
+        else {
+            new CountDownTimer(timer, 60000) {
+                int minutes;
+                int hours;
+                int tempMinutes;
+
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    minutes = (int) (millisUntilFinished / (60000));
+                    hours = minutes / 60;
+                    minutes = minutes % 60;
+
+                    // Remaining time
+
+                    remaining.setText(hours + ":" + minutes);
+
+                    if (tempMinutes == -1) {
+                        hours--;
+                        minutes = 59;
+                    }
+                }
+
+                @Override
+                public void onFinish() {
+                    subjectName.setText("No Activity Now");
+                    startTime.setText("");
+                    remaining.setText("00:00");
+
+                }
+            }.start();
+
+
+        Log.i("++++++++++++++++++++",""+Integer.parseInt(level));
+//        Log.i("++++++++++++++++++++",level);
+        }
+//
+
 
 
         // Students' number
-        TextView students = dialog.findViewById(R.id.IAP_Students);
+        final TextView students = dialog.findViewById(R.id.IAP_Students);
+
+        students1 = new StudentsInLocation();
+
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        Call<StudentsInLocation> getStudentsCall = apiInterface.getStudentsNumber(Integer.parseInt(level));
+        getStudentsCall.enqueue(new Callback<StudentsInLocation>() {
+            @Override
+            public void onResponse(Call<StudentsInLocation> call, Response<StudentsInLocation> response) {
+                students1 = response.body();
+                Log.i("+++++++++++++++",""+students1.getData().size());
+                students.setText(""+students1.getData().size());
+            }
+
+            @Override
+            public void onFailure(Call<StudentsInLocation> call, Throwable t) {
+
+            }
+        });
 
 
 
