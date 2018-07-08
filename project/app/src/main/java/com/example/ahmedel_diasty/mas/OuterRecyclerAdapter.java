@@ -3,6 +3,7 @@ package com.example.ahmedel_diasty.mas;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -68,7 +69,7 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
             public void onClick(View v) {
                 if(!visible[0]){
                     visible[0] = true;
-                    holder.weekDay.setTextColor(Color.RED);
+                    holder.weekDay.setTextColor(Color.rgb(0,139,255));
                     holder.innerList.setVisibility(View.VISIBLE);
                     holder.details.setImageResource(R.drawable.caret_up);
                     holder.indecator.setVisibility(View.VISIBLE);
@@ -80,7 +81,6 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
 
                     subjects.clear();
 
-                    Toast.makeText(context, "Fetch", Toast.LENGTH_SHORT).show();
                     for (int i = 0; i < schedule.getDataSchedules().size(); i++) {
                         if (schedule.getDataSchedules().get(i).getDay().equals(week[position])){
                             subjects.add(schedule.getDataSchedules().get(i));
@@ -100,7 +100,7 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
                 }else{
                     visible[0] = false;
                     holder.innerList.setVisibility(View.GONE);
-                    holder.weekDay.setTextColor(Color.WHITE);
+                    holder.weekDay.setTextColor(Color.rgb(0,139,255));
                     holder.details.setImageResource(R.drawable.caret_down);
                     holder.indecator.setVisibility(View.INVISIBLE);
                 }
@@ -138,7 +138,8 @@ public class OuterRecyclerAdapter extends RecyclerView.Adapter<OuterRecyclerAdap
             rowStartTime = itemView.findViewById(R.id.rowStartTime);
             rowType = itemView.findViewById(R.id.rowType);
 
-
+            Typeface typeface = Typeface.createFromAsset(context.getAssets(),"tahoma.ttf");
+            weekDay.setTypeface(typeface);
         }
     }
 }

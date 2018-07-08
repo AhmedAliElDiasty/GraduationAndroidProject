@@ -152,7 +152,8 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
                 @Override
                 public void onClick(View v) {
                     int adapterPosition = getAdapterPosition();
-                    if (!itemStateArray.get(adapterPosition, false)) {
+
+                    if (!itemStateArray.get(adapterPosition)) {
                         aSwitch.setChecked(true);
                         itemStateArray.put(adapterPosition, true);
                     }
@@ -187,7 +188,7 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
                         });
                         status.setTextColor(Color.rgb(0, 139, 255));
                         status.setText("ON");
-                        status.setEnabled(false);
+                        status.setEnabled(true);
                         pause.setEnabled(true);
 
                     }
@@ -205,16 +206,13 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
                             @Override
                             public void onFailure(Call<StudentsInLocation> call, Throwable t) {
                                 Log.i("++++++++++","failure");
-
 //                                Toast.makeText(context, "Failure", Toast.LENGTH_SHORT).show();
-
                             }
                         });
 //                        notifyDataSetChanged();
                         status.setTextColor(Color.rgb(12, 82, 114));
                         status.setText("OFF");
-                        pause.setEnabled(false);
-
+                        status.setEnabled(false);
                     }
                 }
             });
@@ -223,14 +221,13 @@ public class StudentRowAdapter extends RecyclerView.Adapter<StudentRowAdapter.Ro
         void bind(int position) {
             apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-
             if (students.getData().get(position).getStatus().equals("0")) {
-
                 aSwitch.setChecked(false);
             }
             else {
                 aSwitch.setChecked(true);
+                }
 
             }
         }
-    }}
+    }
