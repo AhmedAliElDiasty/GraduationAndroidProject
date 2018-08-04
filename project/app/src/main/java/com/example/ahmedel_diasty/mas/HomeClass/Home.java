@@ -20,10 +20,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.ahmedel_diasty.mas.AboutUs.AboutUs;
+import com.example.ahmedel_diasty.mas.ManualAttendanceClasses.ManualAttendance;
 import com.example.ahmedel_diasty.mas.Model.StudentsInLocation;
 import com.example.ahmedel_diasty.mas.Notification.MyNotification;
 import com.example.ahmedel_diasty.mas.Remote.ApiClient;
 import com.example.ahmedel_diasty.mas.Remote.ApiInterface;
+import com.example.ahmedel_diasty.mas.ScheduleClasses.Schedule;
+import com.example.ahmedel_diasty.mas.SignAndLogin.HomePage;
 import com.example.ahmedel_diasty.mas.Sqlite.DBConnection;
 
 import java.util.Objects;
@@ -89,7 +92,7 @@ public class Home extends AppCompatActivity {
     // Schedule Button
 
     public void schedule(View view) {
-        Intent intent = new Intent(this,Lectures.class);
+        Intent intent = new Intent(this,Schedule.class);
         startActivity(intent);
     }
     //MyNotification Buton
@@ -302,7 +305,7 @@ public class Home extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         finish();
-
+                        System.exit(0);
                     }
 
                 });

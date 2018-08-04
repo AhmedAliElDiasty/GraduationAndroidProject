@@ -41,7 +41,7 @@
                 android:layout_toRightOf="@+id/image_std"
                 android:layout_weight="6"
                 android:text="Computer Vision Lecture"
-                android:textColor="#ff0000"
+                android:textColor="#008BFF"
                 android:textSize="13sp" />
 
             <TextView
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="12:01 Am"
-            android:textColor="#ff0000" />
+            android:textColor="#008BFF" />
     </LinearLayout>
 
 

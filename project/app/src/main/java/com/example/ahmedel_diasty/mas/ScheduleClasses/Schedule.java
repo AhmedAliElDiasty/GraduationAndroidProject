@@ -36,7 +36,7 @@ public class Lectures extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lectures);
-        final RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        final RecyclerView recyclerView = findViewById(R.id.lectures);
         outerLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(outerLayoutManager);
         recyclerView.setHasFixedSize(true);
@@ -54,7 +54,6 @@ public class Lectures extends AppCompatActivity {
             public void onResponse(Call<Schedule> call, Response<Schedule> response) {
                 schedule = response.body();
 
-                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                 recyclerAdapter = new OuterRecyclerAdapter(Lectures.this,schedule);
                 recyclerView.setAdapter(recyclerAdapter);
 

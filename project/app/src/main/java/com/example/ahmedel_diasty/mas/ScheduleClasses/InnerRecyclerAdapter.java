@@ -111,11 +111,7 @@ final String subjectName = schedule.getDataSchedules().get(position).getSubjectN
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView lectureName,instructorName,startTime,time,marks,attendancePlace;
-
         TextView rowLectureName,rowStartTime,rowType;
-
-
-
 
         public MyViewHolder(View itemView) {
             super(itemView);

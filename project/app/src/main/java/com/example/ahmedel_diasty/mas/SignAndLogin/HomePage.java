@@ -18,10 +18,7 @@ public class HomePage extends AppCompatActivity {
     final String DEFAULT = "default";
     String username ,name ,email ,level ,role;
     TextView textView;
-
     Thread myThread;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

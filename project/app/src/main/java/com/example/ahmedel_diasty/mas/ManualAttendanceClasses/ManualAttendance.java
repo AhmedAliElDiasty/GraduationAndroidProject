@@ -1,6 +1,8 @@
 package com.example.ahmedel_diasty.mas;
 
+import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
@@ -40,7 +42,6 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
     StudentsInLocation studentsInLocation;
     StudentsInLocation studentsInLocation2;
     ArrayList<StudentsInLocationData> students;
-    SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
             @Override
             public void onFailure(Call<StudentsInLocation> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Not Response", Toast.LENGTH_SHORT).show();
-
+                finish();
             }
         });
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
@@ -172,20 +173,70 @@ public class ManualAttendance extends AppCompatActivity implements NavigationVie
         }
         else {
             id = R.id.logout;
-
+            SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("username","default");
             editor.putString("name","default");
             editor.putString("role","default");
             editor.putString("level","default");
             editor.apply();
+            onResume();
             Intent intent = new Intent(this,HomePage.class);
             startActivity(intent);
-
-
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void backButtonHandler() {
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        // Setting Dialog Title
+
+        alertDialog.setTitle("Leave application?");
+
+        // Setting Dialog Message
+
+        alertDialog.setMessage("Are you sure you want to leave the application?");
+
+        // Setting Icon to Dialog
+
+//        alertDialog.setIcon(R.drawable.dialog_icon);
+
+        // Setting Positive "Yes" Button
+
+        alertDialog.setPositiveButton("YES",
+
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        finish();
+                        System.exit(0);
+                    }
+
+                });
+
+        // Setting Negative "NO" Button
+
+        alertDialog.setNegativeButton("NO",
+
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Write your code here to invoke NO event
+
+                        dialog.cancel();
+
+                    }
+
+                });
+
+        // Showing Alert Message
+
+        alertDialog.show();
+
     }
 }

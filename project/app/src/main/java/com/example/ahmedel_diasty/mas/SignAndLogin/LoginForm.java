@@ -63,6 +63,7 @@ public class LoginForm extends AppCompatActivity {
                         model = response.body();
 
                         status = response.body().getStudentLogin().get(0).getName();
+                        Toast.makeText(LoginForm.this, "Login successfully", Toast.LENGTH_SHORT).show();
 
 
                         Log.i("++++++++++++++++",""+response.code());
@@ -93,7 +94,7 @@ public class LoginForm extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Model> call, Throwable t) {
-                        Toast.makeText(LoginForm.this, "Failure", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginForm.this, "Login Failed", Toast.LENGTH_SHORT).show();
                         button.setEnabled(true);
                     }
                 });
@@ -110,7 +111,7 @@ public class LoginForm extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Model> call, Response<Model> response) {
                         model = response.body();
-                        Toast.makeText(LoginForm.this, "Success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginForm.this, "Login successfully", Toast.LENGTH_SHORT).show();
                         SharedPreferences sharedPreferences = getSharedPreferences("Login data",MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("id",model.getStudentLogin().get(0).getId());
@@ -128,7 +129,7 @@ public class LoginForm extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Model> call, Throwable t) {
-                        Toast.makeText(LoginForm.this, "Faliure", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginForm.this, "Login Failed", Toast.LENGTH_SHORT).show();
                         button.setEnabled(true);
                     }
                 });

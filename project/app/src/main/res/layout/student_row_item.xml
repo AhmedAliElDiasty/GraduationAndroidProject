@@ -113,7 +113,8 @@
             android:background="@drawable/switch_background"
             android:enabled="true"
             android:thumb="@drawable/switch_style"
-            android:track="@drawable/track_style" />
+            android:track="@drawable/track_style"
+            />
 
         <TextView
             android:id="@+id/status"
@@ -125,6 +126,7 @@
             android:layout_toLeftOf="@+id/switch1"
             android:layout_toStartOf="@+id/switch1"
             android:text="@string/active"
+            android:clickable="false"
             android:textColor="#0C5272"
             android:textSize="18sp" />
 
